@@ -15,6 +15,9 @@ commands:
       - run: npm test
   publish:
     steps:
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc 
       - run: npm publish
 
 jobs:
