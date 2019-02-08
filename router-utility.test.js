@@ -18,7 +18,7 @@ suite('stripExtraTrailingSlash()', () => {
 
 suite('parseQuery()', () => {
     test('should return { name: "a-name" } when the value is ?name=a-name', () => {
-        expect(parseQuery('?name=a-name')).to.deep.equal({ name: "a-name" });
+        expect(parseQuery('name=a-name')).to.deep.equal({ name: "a-name" });
     })
 })
 
