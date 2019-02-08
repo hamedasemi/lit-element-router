@@ -4,7 +4,7 @@
   "scripts": {
     "demo": "polymer serve",
     "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
-    "test": "nyc mocha --require @babel/register ./**/*.test.js --watch --exit"
+    "test": "nyc mocha --require @babel/register ./**/*.test.js --exit"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
