@@ -1,6 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
-[![Known Vulnerabilities](https://snyk.io/test/github/hamedasemi/lit-element-router/badge.svg)](https://snyk.io/test/github/hamedasemi/lit-element-router)
+[![Known Vulnerabilities](https://snyk.io/test/github/hamedasemi/lit-element-router/badge.svg?targetFile=package.json)](https://snyk.io/test/github/hamedasemi/lit-element-router?targetFile=package.json)
+[![CircleCI](https://circleci.com/gh/hamedasemi/lit-element-router/tree/release.svg?style=svg)](https://circleci.com/gh/hamedasemi/lit-element-router/tree/release)
 
 # lit-element-router
 LitElement Router.
