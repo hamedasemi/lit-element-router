@@ -13,7 +13,8 @@ class MyApp extends LitElement {
 
     static get properties() {
         return {
-            route: { type: String }
+            route: { type: String },
+            params: { type: String }
         }
     }
 
@@ -24,45 +25,36 @@ class MyApp extends LitElement {
             pattern: '/',
             guard: () => { return true }
         }, {
-            name: 'help',
-            pattern: 'help'
-        }, {
-            name: 'username',
-            pattern: 'user/:id/name/:name/:surename',
-            guard: () => { return true }
+            name: 'info',
+            pattern: 'info'
         }, {
             name: 'user',
-            pattern: 'user/:id'
+            pattern: 'user/:id',
+            guard: () => { return true }
         }, {
             name: 'not-found',
             pattern: '*'
         }], (route, params, query) => {
             this.route = route
+            this.params = params
             console.log(route, params, query)
         })
     }
 
     render() {
-        console.log('render')
-
         return html`
             <nav>
                 <router-link href="/">Home</router-link>
-                <router-link href="/help">help</router-link>
-                <router-link href="/user/12/name/Hamed/Asemi">user/12/name/Hamed/Asemi</router-link>
+                <router-link href="/info">Info</router-link>
                 <router-link href="/user/14">user/14</router-link>
-                <router-link href="/anypath">anypath</router-link>
-                <router-link href="/any/path">any/path</router-link>
             </nav>
             <router-slot route='${this.route}'>
-                <h1 slot='home'>Home</h1>
-                <h1 slot='home'>extra Hoe</h1>
-                <h1 slot='user'>User</h1>
-                <h1 slot='help'>Help</h1>
-                <h1 slot='username'>Username</h1>
-                <h1 slot='not-found'>Not Found</h1>
+                <div slot='home'>Home</div>
+                <div slot='info'>Info</div>
+                <div slot='user'>User ${this.params.id}</div>
+                <div slot='not-found'>Not Found</div>
             </router-slot>
-    `
+        `
     }
 }
 
