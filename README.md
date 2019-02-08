@@ -1,3 +1,7 @@
+[![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
+[![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
+[![Known Vulnerabilities](https://snyk.io/test/github/hamedasemi/lit-element-router/badge.svg)](https://snyk.io/test/github/hamedasemi/lit-element-router)
+
 # lit-element-router
 LitElement Router.
 

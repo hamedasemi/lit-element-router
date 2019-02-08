@@ -4,7 +4,8 @@
   "scripts": {
     "demo": "polymer serve",
     "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
-    "test": "nyc mocha --require @babel/register ./**/*.test.js --exit"
+    "test": "nyc --reporter=none mocha --require @babel/register ./**/*.test.js --exit",
+    "report": "npm test && nyc report --reporter=text-lcov | COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -13,6 +14,7 @@
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "asserts": "^4.0.2",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
     "lit-element": "^2.0.1",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0"

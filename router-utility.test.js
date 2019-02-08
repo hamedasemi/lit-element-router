@@ -14,6 +14,9 @@ suite('stripExtraTrailingSlash()', () => {
     test('should return empty when the value empty', () => {
         expect(stripExtraTrailingSlash('')).to.equal('');
     })
+    test('should return //any-path//a-path when the value //any-path//a-path////', () => {
+        expect(stripExtraTrailingSlash('//any-path//a-path////')).to.equal('//any-path//a-path');
+    })
 })
 
 suite('parseQuery()', () => {
