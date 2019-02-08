@@ -1,0 +1,23 @@
+{
+  "name": "lit-element-router",
+  "version": "0.0.0-alpha.0",
+  "scripts": {
+    "demo": "polymer serve",
+    "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
+    "test": "nyc mocha --require @babel/register ./**/*.test.js --watch --exit"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "asserts": "^4.0.2",
+    "chai": "^4.2.0",
+    "lit-element": "^2.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.2.0"
+  },
+  "dependencies": {
+    "lit-element": "^2.0.1"
+  }
+}
