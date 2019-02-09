@@ -4,7 +4,7 @@
   "scripts": {
     "demo": "polymer serve",
     "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
-    "test": "nyc --reporter=none mocha --require @babel/register ./**/*.test.js --exit",
+    "test": "nyc mocha --require @babel/register ./**/*.test.js --exit",
     "report": "npm test && nyc report --reporter=text-lcov | COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls",
     "risk": "snyk monitor"
   },
