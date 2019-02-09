@@ -23,5 +23,8 @@
   },
   "dependencies": {
     "lit-element": "^2.0.1"
+  },
+  "nyc": {
+    "temp-dir": "./node_modules/.cache/alternative-tmp"
   }
 }
