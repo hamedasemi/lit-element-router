@@ -7,6 +7,10 @@ window.addEventListener('route', () => {
     router.call(this, globalRoutes, globalCallback)
 })
 
+window.onpopstate = () => {
+    window.dispatchEvent(new CustomEvent('route'))
+}
+
 export function router(routes, callback) {
     globalRoutes = routes
     globalCallback = callback

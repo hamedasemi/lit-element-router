@@ -1,13 +1,6 @@
 import { LitElement, html } from 'lit-element'
 
 export class RouterSlot extends LitElement {
-    constructor() {
-        super()
-        window.onpopstate = () => {
-            window.dispatchEvent(new CustomEvent('route'))
-        }
-
-    }
     static get properties() {
         return {
             route: { type: String, reflect: true, attribute: 'route' }
