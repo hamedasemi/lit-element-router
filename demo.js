@@ -7,7 +7,7 @@ class MyApp extends LitElement {
     static get properties() {
         return {
             route: { type: String },
-            params: { type: String }
+            params: { type: Object }
         }
     }
 

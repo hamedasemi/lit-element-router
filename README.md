@@ -13,14 +13,14 @@ LitElement Router.
 
 ```javascript
 import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from './lit-element-router'
+import { router, RouterSlot, RouterLink } from 'lit-element-router'
 
 class MyApp extends LitElement {
 
     static get properties() {
         return {
             route: { type: String },
-            params: { type: String }
+            params: { type: Object }
         }
     }
 
