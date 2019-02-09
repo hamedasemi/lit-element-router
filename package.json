@@ -1,13 +1,33 @@
 {
   "name": "lit-element-router",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0-alpha.1",
+  "main": "lit-element-router.js",
   "scripts": {
     "demo": "polymer serve",
     "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
     "test": "nyc mocha --require @babel/register './{,!(node_modules)/**/}*.test.js' --exit",
     "report": "npm test && nyc report --reporter=text-lcov | COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls",
+    "ver": "npm version prerelease --git-tag-version=false --preid=alpha",
     "risk": "snyk monitor"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamedasemi/lit-element-router.git"
+  },
+  "keywords": [
+    "lit",
+    "element",
+    "router",
+    "lit-element",
+    "lit-element-router",
+    "regexp"
+  ],
+  "author": "hamedabolghasemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hamedasemi/lit-element-router/issues"
+  },
+  "homepage": "https://github.com/hamedasemi/lit-element-router#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
