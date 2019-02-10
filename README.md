@@ -6,8 +6,11 @@
 # lit-element-router
 LitElement Router.
 
-## Background
+## Installation
 
+```sh
+npm install lit-element-router --save
+```
 
 ## Usage
 
@@ -50,9 +53,9 @@ class MyApp extends LitElement {
     render() {
         return html`
             <nav>
-                <router-link href="/">Home</router-link>
-                <router-link href="/info">Info</router-link>
-                <router-link href="/user/14">user/14</router-link>
+                <router-link href='/'>Home</router-link>
+                <router-link href='/info'>Info</router-link>
+                <router-link href='/user/14'>user/14</router-link>
             </nav>
             <router-slot route='${this.route}'>
                 <div slot='home'>Home</div>
