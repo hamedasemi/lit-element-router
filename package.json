@@ -1,6 +1,6 @@
 {
   "name": "lit-element-router",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "main": "lit-element-router.js",
   "scripts": {
     "demo": "polymer serve",
