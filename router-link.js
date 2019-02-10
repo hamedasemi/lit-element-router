@@ -17,6 +17,11 @@ export class RouterLink extends LitElement {
     }
     render() {
         return html`
+            <style>
+                ::slotted(*) {
+                    pointer-events: none;
+                }
+            </style>
             <slot></slot>
         `
     }

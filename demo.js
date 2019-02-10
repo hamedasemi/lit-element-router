@@ -38,7 +38,7 @@ class MyApp extends LitElement {
         return html`
             <nav>
                 <router-link href="/">Home</router-link>
-                <router-link href="/info">Info</router-link>
+                <router-link href="/info"><span>Info</span></router-link>
                 <router-link href="/user/14">user/14</router-link>
             </nav>
             <router-slot route='${this.route}'>
