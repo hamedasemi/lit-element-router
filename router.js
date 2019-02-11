@@ -24,6 +24,7 @@ export function router(routes, callback) {
     routes.map((route) => {
         if (route.pattern !== '*') {
             // if (new RegExp(route.pattern.replace(/:[^\s/]+/g, '([\\wäåö-]+)') + '(|/)$').test(uri)) {
+                // [A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+
             if (new RegExp(route.pattern.replace(/:[^\s/]+/g, '([\\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+)') + '(|/)$').test(uri)) {
                 found.push(true)
                 params = parseParams(route.pattern, uri)
