@@ -28,14 +28,34 @@ export function router(routes, callback) {
                 found.push(true)
                 params = parseParams(route.pattern, uri)
                 query = parseQuery(querystring)
-                if (typeof route.guard === 'function') {
-                    if (route.guard()) {
+                if (route.guard) {
+                    const guard = route.guard();
+                    if (guard instanceof Promise) {
+                        guard.then((result) => {
+                            if (result) {
+                                name = route.name
+                                route.callback && route.callback(name, params, query)
+                                callback(name, params, query)
+                            } else {
+                                name = 'not-authorized'
+                                route.callback && route.callback(name, params, query)
+                                callback(name, params, query)
+                            }
+                        })
+
+                    } else if (typeof guard === 'boolean' && guard) {
                         name = route.name
+                        route.callback && route.callback(name, params, query)
+                        callback(name, params, query)
                     } else {
                         name = 'not-authorized'
+                        route.callback && route.callback(name, params, query)
+                        callback(name, params, query)
                     }
                 } else {
                     name = route.name
+                    route.callback && route.callback(name, params, query)
+                    callback(name, params, query)
                 }
             } else {
                 found.push(false)
@@ -46,8 +66,10 @@ export function router(routes, callback) {
     found = found.filter((f) => { return f })
 
     if (!found.length) {
-        name = routes.filter((route) => { return route.pattern === '*' })[0].name
+        let route = routes.filter((route) => { return route.pattern === '*' })[0]
+        route.callback && route.callback(route.name, params, query)
+        callback(route.name, params, query)
     }
 
-    callback(name, params, query)
+    
 }

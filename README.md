@@ -13,7 +13,38 @@ LitElement Router.
 npm install lit-element-router --save
 ```
 
-## Usage
+# Examples
+
+## Minimal 
+```javascript
+import { LitElement, html } from 'lit-element'
+import { router } from 'lit-element-router'
+
+class MyApp extends LitElement {
+    constructor() {
+        super()
+        router([{
+            name: 'home',
+            pattern: '/'
+        }, {
+            name: 'info',
+            pattern: 'info'
+        }, {
+            name: 'user',
+            pattern: 'user/:id'
+        }, {
+            name: 'not-found',
+            pattern: '*'
+        }], (route, params, query) => {
+            console.log(route, params, query)
+        })
+    }
+}
+
+customElements.define('my-app', MyApp)
+```
+
+## Simple
 
 ```javascript
 import { LitElement, html } from 'lit-element'
@@ -32,15 +63,13 @@ class MyApp extends LitElement {
         super()
         router([{
             name: 'home',
-            pattern: '/',
-            guard: () => { return true }
+            pattern: '/'
         }, {
             name: 'info',
             pattern: 'info'
         }, {
             name: 'user',
-            pattern: 'user/:id',
-            guard: () => { return true }
+            pattern: 'user/:id'
         }, {
             name: 'not-found',
             pattern: '*'
@@ -71,6 +100,75 @@ class MyApp extends LitElement {
 customElements.define('my-app', MyApp)
 ```
 
+
+## Advanced
+
+```javascript
+import { LitElement, html } from 'lit-element'
+import { router, RouterSlot, RouterLink } from 'lit-element-router'
+
+class MyApp extends LitElement {
+
+    static get properties() {
+        return {
+            route: { type: String },
+            params: { type: Object }
+        }
+    }
+
+    constructor() {
+        super()
+        router([{
+            name: 'home',
+            pattern: '/',
+            // Each route can accept an individual callback
+            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
+            // Simple function guard
+            guard: () => { return true }
+        }, {
+            name: 'info',
+            pattern: 'info'
+        }, {
+            name: 'user',
+            pattern: 'user/:id',
+            // Promised function guard
+            guard: () => {
+                return new Promise((resolve, reject) => {
+                    // Call an API for Athorization
+                    setTimeout(() => {
+                        resolve(true)
+                    }, 1000);
+                })
+            }
+        }, {
+            name: 'not-found',
+            pattern: '*'
+        }], (route, params, query) => {
+            this.route = route
+            this.params = params
+            console.log(route, params, query)
+        })
+    }
+
+    render() {
+        return html`
+            <nav>
+                <router-link href='/'>Home</router-link>
+                <router-link href='/info'>Info</router-link>
+                <router-link href='/user/14'>user/14</router-link>
+            </nav>
+            <router-slot route='${this.route}'>
+                <div slot='home'>Home</div>
+                <div slot='info'>Info</div>
+                <div slot='user'>User ${this.params.id}</div>
+                <div slot='not-found'>Not Found</div>
+            </router-slot>
+        `
+    }
+}
+
+customElements.define('my-app', MyApp)
+```
 
 ## Browsers support
 
