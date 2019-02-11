@@ -159,6 +159,7 @@ class MyApp extends LitElement {
                 <div slot='home'>Home</div>
                 <div slot='info'>Info</div>
                 <div slot='user'>User ${this.params.id}</div>
+                <div slot='not-authorized'>Not Authorized</div>
                 <div slot='not-found'>Not Found</div>
             </router-slot>
         `
