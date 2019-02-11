@@ -32,7 +32,7 @@ export function router(routes, callback) {
                     if (route.guard()) {
                         name = route.name
                     } else {
-                        name = 'not-authoized'
+                        name = 'not-authorized'
                     }
                 } else {
                     name = route.name
