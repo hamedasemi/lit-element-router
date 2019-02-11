@@ -135,9 +135,7 @@ class MyApp extends LitElement {
             guard: () => {
                 return new Promise((resolve, reject) => {
                     // Call an API for Athorization
-                    setTimeout(() => {
-                        resolve(true)
-                    }, 1000);
+                    resolve(true)
                 })
             }
         }, {
