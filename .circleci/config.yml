@@ -35,6 +35,5 @@ workflows:
     jobs:
       - test-and-publish:
           filters:
-            branches:
-              only:
-                - release
+            tags:
+              only: /^v.*/
