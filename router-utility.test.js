@@ -2,7 +2,7 @@ import { describe as suite, it as test } from 'mocha'
 
 import { expect } from 'chai'
 
-import { parseParams, parseQuery, stripExtraTrailingSlash } from './router-utility'
+import { parseParams, parseQuery, stripExtraTrailingSlash, testRoute, patternToRegExp } from './router-utility'
 
 suite('stripExtraTrailingSlash()', () => {
     test('should return / when the value ///', () => {
@@ -28,5 +28,54 @@ suite('parseQuery()', () => {
 suite('parseParams()', () => {
     test('should return { name: "a-name" } when the pattern is "/:name" and the uri is "/a-name"', () => {
         expect(parseParams('/:name', '/a-name')).to.deep.equal({ name: "a-name" });
+    })
+})
+
+suite('patternToRegExp()', () => {
+    test('should return /\\// when the input is /', () => {
+        expect(patternToRegExp('user/:id')).to.deep.equal(/user\/([\wÀ-ÖØ-öø-ÿ-]+)(|\/)$/);
+    })
+})
+
+
+suite('testRoute()', () => {
+    test('"" ""', () => {
+        expect(testRoute('', '')).to.be.true;
+    })
+    test('"/" ""', () => {
+        expect(testRoute('/', '')).to.be.true;
+    })
+    test(' /', () => {
+        expect(testRoute('', '/')).not.to.be.true;
+    })
+    test('/ /', () => {
+        expect(testRoute('/', '/')).to.be.true;
+    })
+    
+
+    test('home home', () => {
+        expect(testRoute('home', 'home')).to.be.true;
+    })
+    test('/home home', () => {
+        expect(testRoute('/home', 'home')).to.be.true;
+    })
+    test('/home/ home', () => {
+        expect(testRoute('/home/', 'home')).to.be.true;
+    })
+    test('home/ home', () => {
+        expect(testRoute('home/', 'home')).to.be.true;
+    })
+    
+    test('user/12 user/:id', () => {
+        expect(testRoute('user/12', 'user/:id')).to.be.true;
+    })
+    test('/user/12 user/:id', () => {
+        expect(testRoute('/user/12', 'user/:id')).to.be.true;
+    })
+    test('/user/12/ user/:id', () => {
+        expect(testRoute('/user/12/', 'user/:id')).to.be.true;
+    })
+    test('user/12/ user/:id', () => {
+        expect(testRoute('user/12/', 'user/:id')).to.be.true;
     })
 })

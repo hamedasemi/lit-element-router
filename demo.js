@@ -17,7 +17,7 @@ class MyApp extends LitElement {
         this.params = {}
         router([{
             name: 'home',
-            pattern: '/',
+            pattern: '',
             callback: (route, params, query)=>{ console.log('callback', route, params, query)},
             guard: () => { return true }
         }, {

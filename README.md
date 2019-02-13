@@ -26,7 +26,7 @@ class MyApp extends LitElement {
         super()
         router([{
             name: 'home',
-            pattern: '/'
+            pattern: ''
         }, {
             name: 'info',
             pattern: 'info'
@@ -64,7 +64,7 @@ class MyApp extends LitElement {
         super()
         router([{
             name: 'home',
-            pattern: '/'
+            pattern: ''
         }, {
             name: 'info',
             pattern: 'info'
@@ -121,7 +121,7 @@ class MyApp extends LitElement {
         super()
         router([{
             name: 'home',
-            pattern: '/',
+            pattern: '',
             // Each route can accept an individual callback
             callback: (route, params, query)=>{ console.log('callback', route, params, query)},
             // Simple function guard

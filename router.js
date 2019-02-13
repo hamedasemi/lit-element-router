@@ -1,76 +1,59 @@
-import { parseParams, parseQuery, stripExtraTrailingSlash } from './router-utility'
+import { parseParams, parseQuery, stripExtraTrailingSlash, testRoute } from './router-utility';
 
-let globalRoutes
-let globalCallback
+let globalRoutes;
+let globalCallback;
 
 window.addEventListener('route', () => {
-    router.call(this, globalRoutes, globalCallback)
+    router.call(this, globalRoutes, globalCallback);
 })
 
 window.onpopstate = () => {
-    window.dispatchEvent(new CustomEvent('route'))
+    window.dispatchEvent(new CustomEvent('route'));
 }
 
 export function router(routes, callback) {
-    globalRoutes = routes
-    globalCallback = callback
-    let found = []
-    let name = ''
-    let params = {}
-    let query = {}
-    const uri = stripExtraTrailingSlash(decodeURI(window.location.pathname))
-    const querystring = decodeURI(window.location.search)
+    globalRoutes = routes;
+    globalCallback = callback;
 
-    routes.map((route) => {
-        if (route.pattern !== '*') {
-            // if (new RegExp(route.pattern.replace(/:[^\s/]+/g, '([\\wäåö-]+)') + '(|/)$').test(uri)) {
-                // [A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+
-            if (new RegExp(route.pattern.replace(/:[^\s/]+/g, '([\\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+)') + '(|/)$').test(uri)) {
-                found.push(true)
-                params = parseParams(route.pattern, uri)
-                query = parseQuery(querystring)
-                if (route.guard) {
-                    const guard = route.guard();
-                    if (guard instanceof Promise) {
-                        guard.then((result) => {
-                            if (result) {
-                                name = route.name
-                                route.callback && route.callback(name, params, query)
-                                callback(name, params, query)
-                            } else {
-                                name = 'not-authorized'
-                                route.callback && route.callback(name, params, query)
-                                callback(name, params, query)
-                            }
-                        })
+    const uri = decodeURI(window.location.pathname);
+    const querystring = decodeURI(window.location.search);
 
-                    } else if (typeof guard === 'boolean' && guard) {
-                        name = route.name
-                        route.callback && route.callback(name, params, query)
-                        callback(name, params, query)
+    let notFoundRoute = routes.filter(route => route.pattern === '*')[0];
+
+    routes = routes.filter(route => route.pattern !== '*' && testRoute(uri, route.pattern));
+
+    if (routes.length) {
+        let route = routes[0];
+        route.params = parseParams(route.pattern, uri);
+        route.query = parseQuery(querystring);
+
+        if (route.guard && typeof route.guard === 'function') {
+            const guard = route.guard();
+
+            if (guard instanceof Promise) {
+
+                guard.then((resolved) => {
+                    if (resolved) {
+                        route.callback && route.callback(route.name, route.params, route.query)
+                        callback(route.name, route.params, route.query);
                     } else {
-                        name = 'not-authorized'
-                        route.callback && route.callback(name, params, query)
-                        callback(name, params, query)
+                        route.callback && route.callback('not-authorized', route.params, route.query)
+                        callback('not-authorized', {}, {});
                     }
-                } else {
-                    name = route.name
-                    route.callback && route.callback(name, params, query)
-                    callback(name, params, query)
-                }
+                })
+            } else if (typeof guard === 'boolean') {
+                route.callback && route.callback(route.name, route.params, route.query)
+                callback(route.name, route.params, route.query);
             } else {
-                found.push(false)
+                route.callback && route.callback('not-authorized', route.params, route.query)
+                callback('not-authorized', {}, {});
             }
+        } else {
+            route.callback && route.callback(route.name, route.params, route.query)
+            callback(route.name, route.params, route.query);
         }
-    })
-
-    found = found.filter((f) => { return f })
-
-    if (!found.length) {
-        let route = routes.filter((route) => { return route.pattern === '*' })[0]
-        route.callback && route.callback(route.name, params, query)
-        callback(route.name, params, query)
+    } else {
+        notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {})
+        callback(notFoundRoute.name, {}, {});
     }
-
-    
 }

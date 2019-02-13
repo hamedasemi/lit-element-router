@@ -18,9 +18,10 @@ export function parseQuery(querystring) {
 }
 
 /**
- * 
- * @param {String} pattern - The author of the book.
- * @param {String} uri  - The author of the book.
+ * Desc
+ * @param {String} pattern - The pattern
+ * @param {String} uri - The current uri
+ * @return {Object} - The uri params object
  */
 export function parseParams(pattern, uri) {
     let params = {}
@@ -34,4 +35,22 @@ export function parseParams(pattern, uri) {
         }
     })
     return params
+}
+
+/**
+ * À-ÖØ-öø-ÿ
+ * @param {*} pattern 
+ */
+export function patternToRegExp(pattern) {
+    if (pattern) {
+        return new RegExp(pattern.replace(/:[^\s/]+/g, '([\\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+)') + '(|/)$');
+    } else {
+        return new RegExp('(^$|^/$)');
+    }
+}
+
+export function testRoute(uri, pattern) {
+    if (patternToRegExp(pattern).test(uri)) {
+        return true;
+    }
 }
