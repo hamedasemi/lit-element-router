@@ -7,7 +7,7 @@
     "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug",
     "test": "nyc mocha --require @babel/register './{,!(node_modules)/**/}*.test.js' --exit",
     "report": "npm test && nyc report --reporter=text-lcov | COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls",
-    "ver": "npm version prerelease --git-tag-version=false --preid=alpha",
+    "ver": "npm version prerelease --preid=beta",
     "risk": "snyk monitor"
   },
   "repository": {
