@@ -1,5 +1,5 @@
 # LitElement Router
-A simple and lightwight LitElement Router.
+A simple and lightweight LitElement Router.
 
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=release)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=release)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
