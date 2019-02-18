@@ -7,6 +7,7 @@ export class RouterLink extends LitElement {
 
     }
     clickHandler(event) {
+        event.preventDefault();
         window.history.pushState({}, null, event.target.href + window.location.search)
         window.dispatchEvent(new CustomEvent('route'))
     }
@@ -21,8 +22,14 @@ export class RouterLink extends LitElement {
                 ::slotted(*) {
                     pointer-events: none;
                 }
+                a {
+                    all: unset;
+                    display: contents;
+                }
             </style>
-            <slot></slot>
+            <a href='${this.href}'>
+                <slot></slot>
+            </a>
         `
     }
 }
