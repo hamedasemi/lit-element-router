@@ -3,15 +3,22 @@ import { parseParams, parseQuery, stripExtraTrailingSlash, testRoute } from './r
 let globalRoutes;
 let globalCallback;
 
-window.addEventListener('route', () => {
-    router.call(this, globalRoutes, globalCallback);
-})
+let stats = 0;
 
-window.onpopstate = () => {
-    window.dispatchEvent(new CustomEvent('route'));
-}
 
 export function router(routes, callback) {
+
+    if (!stats) {
+        window.addEventListener('route', () => {
+            router.call(this, globalRoutes, globalCallback);
+        })
+
+        window.onpopstate = () => {
+            window.dispatchEvent(new CustomEvent('route'));
+        }
+        stats = 1
+    }
+
     globalRoutes = routes;
     globalCallback = callback;
 
@@ -34,26 +41,26 @@ export function router(routes, callback) {
 
                 guard.then((resolved) => {
                     if (resolved) {
-                        route.callback && route.callback(route.name, route.params, route.query)
-                        callback(route.name, route.params, route.query);
+                        route.callback && route.callback(route.name, route.params, route.query, route.data)
+                        callback(route.name, route.params, route.query, route.data);
                     } else {
-                        route.callback && route.callback('not-authorized', route.params, route.query)
+                        route.callback && route.callback('not-authorized', route.params, route.query, route.data)
                         callback('not-authorized', {}, {});
                     }
                 })
             } else if (typeof guard === 'boolean') {
-                route.callback && route.callback(route.name, route.params, route.query)
-                callback(route.name, route.params, route.query);
+                route.callback && route.callback(route.name, route.params, route.query, route.data)
+                callback(route.name, route.params, route.query, route.data);
             } else {
-                route.callback && route.callback('not-authorized', route.params, route.query)
+                route.callback && route.callback('not-authorized', route.params, route.query, route.data)
                 callback('not-authorized', {}, {});
             }
         } else {
-            route.callback && route.callback(route.name, route.params, route.query)
-            callback(route.name, route.params, route.query);
+            route.callback && route.callback(route.name, route.params, route.query, route.data)
+            callback(route.name, route.params, route.query, route.data);
         }
     } else {
-        notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {})
-        callback(notFoundRoute.name, {}, {});
+        notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
+        callback(notFoundRoute.name, {}, {}, {});
     }
 }
