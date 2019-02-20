@@ -4,7 +4,6 @@ export class RouterLink extends LitElement {
     constructor() {
         super()
         this.addEventListener('click', this.clickHandler.bind(this))
-
     }
     clickHandler(event) {
         event.preventDefault();

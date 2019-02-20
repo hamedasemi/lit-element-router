@@ -1,4 +1,4 @@
-import { parseParams, parseQuery, stripExtraTrailingSlash, testRoute } from './router-utility';
+import { parseParams, parseQuery, stripExtraTrailingSlash, testRoute } from '../utility/router-utility';
 
 let globalRoutes;
 let globalCallback;

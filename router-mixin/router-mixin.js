@@ -1,11 +1,11 @@
-import { parseParams, parseQuery, testRoute } from './router-utility';
+import { parseParams, parseQuery, testRoute } from '../utility/router-utility';
 
 export let routerMixin = (superclass) => class extends superclass {
-    // static get properties() {
-    //     return {
-    //         route: { type: String, reflect: true, attribute: 'route' }
-    //     }
-    // }
+    static get properties() {
+        return {
+            route: { type: String, reflect: true, attribute: 'route' }
+        }
+    }
 
     constructor() {
         super(...arguments)

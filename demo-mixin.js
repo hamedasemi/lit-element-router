@@ -1,6 +1,6 @@
 import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
 import { LitElement, html } from 'lit-element'
-import { RouterSlot, RouterLink, routerMixin } from './lit-element-router'
+import { routerMixin } from './lit-element-router'
 
 class MyApp extends routerMixin(LitElement) {
 
