@@ -69,10 +69,9 @@ export let routerMixin = (superclass) => class extends superclass {
             if (route.guard && typeof route.guard === 'function') {
                 const guard = route.guard();
 
-                if (guard instanceof Promise) {
-
-                    guard.then((resolved) => {
-                        if (resolved) {
+                Promise.resolve(guard)
+                    .then((allowed) => {
+                        if (allowed) {
                             route.callback && route.callback(route.name, route.params, route.query, route.data)
                             callback(route.name, route.params, route.query, route.data);
                         } else {
@@ -80,13 +79,6 @@ export let routerMixin = (superclass) => class extends superclass {
                             callback('not-authorized', {}, {}, {});
                         }
                     })
-                } else if (typeof guard === 'boolean') {
-                    route.callback && route.callback(route.name, route.params, route.query, route.data)
-                    callback(route.name, route.params, route.query, route.data);
-                } else {
-                    route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                    callback('not-authorized', {}, {}, {});
-                }
             } else {
                 route.callback && route.callback(route.name, route.params, route.query, route.data)
                 callback(route.name, route.params, route.query, route.data);
