@@ -91,9 +91,11 @@ export let routerMixin = (superclass) => class extends superclass {
                 route.callback && route.callback(route.name, route.params, route.query, route.data)
                 callback(route.name, route.params, route.query, route.data);
             }
-        } else {
+        } else if (notFoundRoute) {
             notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
             callback(notFoundRoute.name, {}, {}, {});
+        } else {
+            callback('not-found', {}, {});
         }
 
         if (super.router) super.router();
