@@ -77,7 +77,7 @@ export let routerMixin = (superclass) => class extends superclass {
                             callback(route.name, route.params, route.query, route.data);
                         } else {
                             route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                            callback('not-authorized', {}, {});
+                            callback('not-authorized', {}, {}, {});
                         }
                     })
                 } else if (typeof guard === 'boolean') {
@@ -85,7 +85,7 @@ export let routerMixin = (superclass) => class extends superclass {
                     callback(route.name, route.params, route.query, route.data);
                 } else {
                     route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                    callback('not-authorized', {}, {});
+                    callback('not-authorized', {}, {}, {});
                 }
             } else {
                 route.callback && route.callback(route.name, route.params, route.query, route.data)
@@ -95,7 +95,7 @@ export let routerMixin = (superclass) => class extends superclass {
             notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
             callback(notFoundRoute.name, {}, {}, {});
         } else {
-            callback('not-found', {}, {});
+            callback('not-found', {}, {}, {});
         }
 
         if (super.router) super.router();
