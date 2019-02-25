@@ -92,7 +92,6 @@ export let routerOutletMixin = (superclass) => class extends superclass {
             this.appendChild(selected);
         });
         if (this.currentRoute) {
-            console.log('<<<<<<<<<<<<<<<', this.shadowRoot);
             ([...this.querySelectorAll(`[route~=${this.currentRoute}]`)]).map((selected) => {
                 this.shadowRoot.appendChild(selected)
             });
