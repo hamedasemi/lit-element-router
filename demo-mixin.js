@@ -1,8 +1,8 @@
 import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
 import { LitElement, html } from 'lit-element'
 import { routerMixin } from './lit-element-router'
-import { } from './router-mixin/test-element'
-import { } from './router-mixin/test-element-link'
+import { } from './router-mixin/any-arbitary-lit-element'
+import { } from './router-mixin/an-arbitary-lit-element'
 
 class MyApp extends routerMixin(LitElement) {
 
@@ -20,6 +20,7 @@ class MyApp extends routerMixin(LitElement) {
         this.router([{
             name: 'home',
             pattern: '',
+            data: {title: 'Home'},
             callback: (route, params, query)=>{ console.log('callback', route, params, query)},
             guard: () => { return true }
         }, {
@@ -47,41 +48,20 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <test-element-link></test-element-link>
-            <nav>
-                <a @click=${this.linkClick} href="/">Home</a>
-                <a @click=${this.linkClick} href="/info">Info</a>
-                <a @click=${this.linkClick} href="/user/14">user/14</a>
-                <a @click=${this.linkClick} href="/user/16">user/16</a>
-                <a @click=${this.linkClick} href="/user/16/not/found">user/16/not/found</a>
-            </nav>
-            <div current-route='${this.route}'>
-                <div route='home'>Home</div>
-                <div route='info'>Info</div>
-                <div route='user'>User ${this.params.id}</div>
-                <div route='not-authorized'>Not Authorized</div>
-                <div route='not-found'>Not Found</div>
-            </div>
-            <div current-route='${this.route}'>
-                <div route='home'>Home</div>
-                <div route='info'>mY Info</div>
-                <div route='user'>User ${this.params.id}</div>
-                <div route='not-authorized'>Not Authorized</div>
-                <div route='not-found'>Not Found</div>
-            </div>
-            <test-element current-route='${this.route}'>
-                <div route='home'>Home test-element</div>
-                <div route='info'>mY Info test-element</div>
-                <div route='user'>User ${this.params.id} test-element</div>
-                <div route='not-authorized'>Not Authorized test-element</div>
-                <div route='not-found'>Not Found test-element</div>
-            </test-element>
-        `
-    }
+            <an-arbitary-lit-element href="/">Home</an-arbitary-lit-element>
+            <an-arbitary-lit-element href="/info">Info</an-arbitary-lit-element>
+            <an-arbitary-lit-element href="/user/14">user/14</an-arbitary-lit-element>
+            <an-arbitary-lit-element href="/user/16">user/16</an-arbitary-lit-element>
+            <an-arbitary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitary-lit-element>
 
-    linkClick(event){
-        event.preventDefault();
-        this.navigate(event.target.href);
+            <any-arbitary-lit-element current-route='${this.route}'>
+                <div route='home'>Home any-arbitary-lit-element</div>
+                <div route='info'>mY Info any-arbitary-lit-element</div>
+                <div route='user'>User ${this.params.id} any-arbitary-lit-element</div>
+                <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
+                <div route='not-found'>Not Found any-arbitary-lit-element</div>
+            </any-arbitary-lit-element>
+        `
     }
 }
 

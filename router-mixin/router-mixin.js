@@ -8,7 +8,6 @@ export let routerMixin = (superclass) => class extends superclass {
     }
 
     firstUpdated() {
-        this.routerOutlet();
         window.addEventListener('route', () => {
             this.router.call(this, this.globalRoutes, this.globalCallback);
         })
@@ -18,39 +17,6 @@ export let routerMixin = (superclass) => class extends superclass {
         }
         if (super.firstUpdated) super.firstUpdated();
     }
-
-    updated(updatedProperties) {
-        updatedProperties.has('route') && this.routerOutlet();
-        if (super.updated) super.updated();
-    }
-
-    routerOutlet() {
-        let routerOutlets = [...this.shadowRoot.querySelectorAll(`[current-route]`)]
-
-        routerOutlets.map((routerOutlet) => {
-            if (!routerOutlet.shadowRoot) {
-                routerOutlet.attachShadow({ mode: 'open' });
-            }
-            ([...routerOutlet.shadowRoot.querySelectorAll(`[route]`)]).map((selected) => {
-                routerOutlet.appendChild(selected);
-            });
-            if (this.route) {
-                ([...routerOutlet.querySelectorAll(`[route~=${this.route}]`)]).map((selected) => {
-                    routerOutlet.shadowRoot.appendChild(selected)
-                });
-            }
-
-        })
-        if (super.routerOutlet) super.routerOutlet();
-    }
-
-    navigate(href) {
-        window.history.pushState({}, null, href + window.location.search);
-        window.dispatchEvent(new CustomEvent('route'));
-
-        if (super.navigate) super.navigate();
-    }
-
 
     router(routes, callback) {
         this.globalRoutes = routes;
