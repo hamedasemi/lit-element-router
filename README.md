@@ -16,6 +16,9 @@ npm install lit-element-router --save
 
 # Examples
 
+## Mixin
+[Complete example using JavaScript mixins](https://github.com/hamedasemi/lit-element-router/blob/mainline/README_MIXIN.md)
+
 ## Minimal 
 ```javascript
 import { LitElement, html } from 'lit-element'
