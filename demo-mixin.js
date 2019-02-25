@@ -1,6 +1,8 @@
 import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
 import { LitElement, html } from 'lit-element'
 import { routerMixin } from './lit-element-router'
+import { } from './router-mixin/test-element'
+import { } from './router-mixin/test-element-link'
 
 class MyApp extends routerMixin(LitElement) {
 
@@ -45,6 +47,7 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
+            <test-element-link></test-element-link>
             <nav>
                 <a @click=${this.linkClick} href="/">Home</a>
                 <a @click=${this.linkClick} href="/info">Info</a>
@@ -52,20 +55,27 @@ class MyApp extends routerMixin(LitElement) {
                 <a @click=${this.linkClick} href="/user/16">user/16</a>
                 <a @click=${this.linkClick} href="/user/16/not/found">user/16/not/found</a>
             </nav>
-            <div route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-authorized'>Not Authorized</div>
-                <div slot='not-found'>Not Found</div>
+            <div current-route='${this.route}'>
+                <div route='home'>Home</div>
+                <div route='info'>Info</div>
+                <div route='user'>User ${this.params.id}</div>
+                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-found'>Not Found</div>
             </div>
-            <div route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-authorized'>Not Authorized</div>
-                <div slot='not-found'>Not Found</div>
+            <div current-route='${this.route}'>
+                <div route='home'>Home</div>
+                <div route='info'>mY Info</div>
+                <div route='user'>User ${this.params.id}</div>
+                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-found'>Not Found</div>
             </div>
+            <test-element current-route='${this.route}'>
+                <div route='home'>Home test-element</div>
+                <div route='info'>mY Info test-element</div>
+                <div route='user'>User ${this.params.id} test-element</div>
+                <div route='not-authorized'>Not Authorized test-element</div>
+                <div route='not-found'>Not Found test-element</div>
+            </test-element>
         `
     }
 

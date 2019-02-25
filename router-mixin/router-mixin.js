@@ -7,9 +7,8 @@ export let routerMixin = (superclass) => class extends superclass {
         }
     }
 
-    constructor() {
-        super(...arguments)
-
+    firstUpdated() {
+        this.routerOutlet();
         window.addEventListener('route', () => {
             this.router.call(this, this.globalRoutes, this.globalCallback);
         })
@@ -17,29 +16,32 @@ export let routerMixin = (superclass) => class extends superclass {
         window.onpopstate = () => {
             window.dispatchEvent(new CustomEvent('route'));
         }
-    }
-
-    firstUpdated(){
-        this.slot();
         if (super.firstUpdated) super.firstUpdated();
     }
 
     updated(updatedProperties) {
-        updatedProperties.has('route') && this.slot();
+        updatedProperties.has('route') && this.routerOutlet();
         if (super.updated) super.updated();
     }
 
-    slot() {
-        ([...this.shadowRoot.querySelectorAll(`[slot]`)]).map((selected) => {
-            this.appendChild(selected)
-        });
-        if (this.route) {
-            ([...this.querySelectorAll(`[slot~=${this.route}]`)]).map((selected) => {
-                this.shadowRoot.appendChild(selected)
-            });
-        }
+    routerOutlet() {
+        let routerOutlets = [...this.shadowRoot.querySelectorAll(`[current-route]`)]
 
-        if (super.slot) super.slot();
+        routerOutlets.map((routerOutlet) => {
+            if (!routerOutlet.shadowRoot) {
+                routerOutlet.attachShadow({ mode: 'open' });
+            }
+            ([...routerOutlet.shadowRoot.querySelectorAll(`[route]`)]).map((selected) => {
+                routerOutlet.appendChild(selected);
+            });
+            if (this.route) {
+                ([...routerOutlet.querySelectorAll(`[route~=${this.route}]`)]).map((selected) => {
+                    routerOutlet.shadowRoot.appendChild(selected)
+                });
+            }
+
+        })
+        if (super.routerOutlet) super.routerOutlet();
     }
 
     navigate(href) {
@@ -67,9 +69,7 @@ export let routerMixin = (superclass) => class extends superclass {
             route.query = parseQuery(querystring);
 
             if (route.guard && typeof route.guard === 'function') {
-                const guard = route.guard();
-
-                Promise.resolve(guard)
+                Promise.resolve(route.guard())
                     .then((allowed) => {
                         if (allowed) {
                             route.callback && route.callback(route.name, route.params, route.query, route.data)
@@ -91,5 +91,47 @@ export let routerMixin = (superclass) => class extends superclass {
         }
 
         if (super.router) super.router();
+    }
+};
+
+export let routerLinkMixin = (superclass) => class extends superclass {
+
+    navigate(href) {
+        window.history.pushState({}, null, href + window.location.search);
+        window.dispatchEvent(new CustomEvent('route'));
+
+        if (super.navigate) super.navigate();
+    }
+};
+
+export let routerOutletMixin = (superclass) => class extends superclass {
+
+    static get properties() {
+        return {
+            currentRoute: { type: String, reflect: true, attribute: 'current-route' }
+        }
+    }
+
+    updated(updatedProperties) {
+        updatedProperties.has('currentRoute') && this.routerOutlet();
+        if (super.updated) super.updated();
+    }
+
+    firstUpdated() {
+        this.routerOutlet();
+    }
+
+    routerOutlet() {
+        ([...this.shadowRoot.querySelectorAll(`[route]`)]).map((selected) => {
+            this.appendChild(selected);
+        });
+        if (this.currentRoute) {
+            console.log('<<<<<<<<<<<<<<<', this.shadowRoot);
+            ([...this.querySelectorAll(`[route~=${this.currentRoute}]`)]).map((selected) => {
+                this.shadowRoot.appendChild(selected)
+            });
+        }
+
+        if (super.routerOutlet) super.routerOutlet();
     }
 };
