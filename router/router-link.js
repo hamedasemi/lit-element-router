@@ -24,6 +24,10 @@ export class RouterLink extends LitElement {
                 a {
                     all: unset;
                     display: contents;
+                    
+                    /*Fallback for Edge*/
+                    text-decoration: unset;
+                    color: unset;
                 }
             </style>
             <a href='${this.href}'>
