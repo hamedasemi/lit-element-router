@@ -50,6 +50,8 @@ customElements.define('my-app', MyApp);
     
 # Complete Example Using JavaScript Mixins in Details
 
+## Dont like mixins check out other usage https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
+
 ## Make any arbitary components or elements to a router using router mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
