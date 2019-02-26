@@ -15,6 +15,10 @@ npm install lit-element-router --save
 ```
 
 ## Usage
+
+### Working example
+You can find a working project on StackBlitz https://stackblitz.com/edit/lit-element-router
+
 ### Minimal
 ```js
 import { LitElement, html } from 'lit-element';
@@ -46,11 +50,13 @@ class MyApp extends routerMixin(LitElement) {
 
 customElements.define('my-app', MyApp);
 ```   
-        
+
+
     
 # Complete Example Using JavaScript Mixins in Details
 
-## Dont like mixins check out other usage https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
+## Dont like mixins check out other examples
+Don't want to use mixins interface you cane use a simple version in this tutorial:  https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
 
 ## Make any arbitary components or elements to a router using router mixins method
 ```javascript
