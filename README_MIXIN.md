@@ -16,10 +16,11 @@ npm install lit-element-router --save
 
 # Complete Example Using JavaScript Mixins
 ```js
-import { LitElement, html } from 'lit-element'
-import { routerMixin } from 'lit-element-router'
-import { } from './any-arbitary-lit-element'
-import { } from './an-arbitary-lit-element'
+import { LitElement, html } from 'lit-element';
+import { routerMixin } from './lit-element-router';
+
+import { } from './router-mixin/any-arbitary-lit-element';
+import { } from './router-mixin/an-arbitary-lit-element';
 
 class MyApp extends routerMixin(LitElement) {
 
@@ -27,18 +28,14 @@ class MyApp extends routerMixin(LitElement) {
         return {
             route: { type: String },
             params: { type: Object }
-        }
+        };
     }
 
-    constructor() {
-        super()
-        this.route = ''
-        this.params = {}
-        this.router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: '',
-            data: {title: 'Home'},
-            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
+            data: { title: 'Home' },
             guard: () => { return true }
         }, {
             name: 'info',
@@ -56,10 +53,12 @@ class MyApp extends routerMixin(LitElement) {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            this.route = route
-            this.params = params
-        })
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route;
+        this.params = params;
     }
 
     render() {
@@ -77,11 +76,11 @@ class MyApp extends routerMixin(LitElement) {
                 <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
                 <div route='not-found'>Not Found any-arbitary-lit-element</div>
             </any-arbitary-lit-element>
-        `
+        `;
     }
 }
 
-customElements.define('my-app', MyApp)
+customElements.define('my-app', MyApp);
 ```
 
 # Complete Example Using JavaScript Mixins in Details
@@ -98,14 +97,14 @@ class MyApp extends routerMixin(LitElement) {
 customElements.define('my-app', MyApp)
 ```
 
-## Register routes and the callback
+## Register routes and the onRoute function
 ```javascript
 import { LitElement, html } from 'lit-element'
 import { routerMixin } from 'lit-element-router'
 
 class MyApp extends routerMixin(LitElement) {
-    constructor() {
-        this.router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: ''
         }, {
@@ -117,9 +116,12 @@ class MyApp extends routerMixin(LitElement) {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            console.log(route, params, query, data)
-        })
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route;
+        this.params = params;
     }
 }
 
@@ -145,8 +147,8 @@ import { LitElement, html } from 'lit-element'
 import { routerMixin } from 'lit-element-router'
 
 class MyApp extends routerMixin(LitElement) {
-    constructor() {
-        this.router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: ''
         }, {
@@ -158,9 +160,12 @@ class MyApp extends routerMixin(LitElement) {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            console.log(route, params, query, data)
-        })
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route;
+        this.params = params;
     }
 
     render() {
@@ -172,7 +177,7 @@ class MyApp extends routerMixin(LitElement) {
                 <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
                 <div route='not-found'>Not Found any-arbitary-lit-element</div>
             </any-arbitary-lit-element>
-        `
+        `;
 }
 
 customElements.define('my-app', MyApp)
