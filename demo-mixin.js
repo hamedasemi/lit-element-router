@@ -11,17 +11,15 @@ class MyApp extends routerMixin(LitElement) {
             route: { type: String },
             params: { type: Object }
         }
+    
     }
 
-    constructor() {
-        super()
-        this.route = ''
-        this.params = {}
-        this.router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: '',
-            data: {title: 'Home'},
-            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
+            data: { title: 'Home' },
+            callback: (route, params, query) => { console.log('callback', route, params, query) },
             guard: () => { return true }
         }, {
             name: 'info',
@@ -39,11 +37,19 @@ class MyApp extends routerMixin(LitElement) {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            this.route = route
-            this.params = params
-            console.log(route, params, query, data)
-        })
+        }];
+    }
+
+    constructor() {
+        super()
+        this.route = ''
+        this.params = {}
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route
+        this.params = params
+        console.log(route, params, query, data)
     }
 
     render() {
