@@ -14,164 +14,182 @@ A simple and lightweight LitElement Router.
 npm install lit-element-router --save
 ```
 
-# Examples
+## Usage
+### Minimal
+```js
+import { LitElement, html } from 'lit-element';
+import { routerMixin } from 'lit-element-router';
 
-## Mixin
-[Complete example using JavaScript mixins](https://github.com/hamedasemi/lit-element-router/blob/mainline/README_MIXIN.md)
+class MyApp extends routerMixin(LitElement) {
 
-## Minimal 
-```javascript
-import { LitElement, html } from 'lit-element'
-import { router } from 'lit-element-router'
-
-class MyApp extends LitElement {
-    constructor() {
-        super()
-        router([{
-            name: 'home',
-            pattern: ''
-        }, {
-            name: 'info',
-            pattern: 'info'
-        }, {
-            name: 'user',
-            pattern: 'user/:id'
-        }, {
-            name: 'not-found',
-            pattern: '*'
-        }], (route, params, query) => {
-            console.log(route, params, query)
-        })
-    }
-}
-
-customElements.define('my-app', MyApp)
-```
-
-## Simple
-
-```javascript
-import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from 'lit-element-router'
-
-class MyApp extends LitElement {
-
-    static get properties() {
-        return {
-            route: { type: String },
-            params: { type: Object }
-        }
-    }
-
-    constructor() {
-        super()
-        router([{
-            name: 'home',
-            pattern: ''
-        }, {
-            name: 'info',
-            pattern: 'info'
-        }, {
-            name: 'user',
-            pattern: 'user/:id'
-        }, {
-            name: 'not-found',
-            pattern: '*'
-        }], (route, params, query) => {
-            this.route = route
-            this.params = params
-            console.log(route, params, query)
-        })
-    }
-
-    render() {
-        return html`
-            <nav>
-                <router-link href='/'>Home</router-link>
-                <router-link href='/info'>Info</router-link>
-                <router-link href='/user/14'>user/14</router-link>
-            </nav>
-            <router-slot route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-found'>Not Found</div>
-            </router-slot>
-        `
-    }
-}
-
-customElements.define('my-app', MyApp)
-```
-
-
-## Advanced
-
-```javascript
-import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from 'lit-element-router'
-
-class MyApp extends LitElement {
-
-    static get properties() {
-        return {
-            route: { type: String },
-            params: { type: Object }
-        }
-    }
-
-    constructor() {
-        super()
-        router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: '',
-            // Each route can accept an individual callback
-            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
-            // Simple function guard
-            guard: () => { return true }
+            data: { title: 'Home' }
         }, {
             name: 'info',
             pattern: 'info'
         }, {
             name: 'user',
-            pattern: 'user/:id',
-            // Promised function guard
-            guard: () => {
-                return new Promise((resolve, reject) => {
-                    // Call an API for Athorization
-                    resolve(true)
-                })
-            }
+            pattern: 'user/:id'
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query) => {
-            this.route = route
-            this.params = params
-            console.log(route, params, query)
-        })
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        console.log(route, params, query, data)
+    }
+}
+
+customElements.define('my-app', MyApp);
+```   
+        
+    
+# Complete Example Using JavaScript Mixins in Details
+
+## Make any arbitary components or elements to a router using router mixins method
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerMixin } from 'lit-element-router';
+
+class MyApp extends routerMixin(LitElement) {
+
+}
+
+customElements.define('my-app', MyApp);
+```
+
+## Register routes and the onRoute function
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerMixin } from 'lit-element-router';
+
+class MyApp extends routerMixin(LitElement) {
+    static get routes() {
+        return [{
+            name: 'home',
+            pattern: ''
+        }, {
+            name: 'info',
+            pattern: 'info'
+        }, {
+            name: 'user',
+            pattern: 'user/:id'
+        }, {
+            name: 'not-found',
+            pattern: '*'
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route;
+        this.params = params;
+    }
+}
+
+customElements.define('my-app', MyApp);
+```
+
+
+## Make any arbitary components or elements to a router outlet using router outlet mixins method
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerOutletMixin } from 'lit-element-router';
+
+export class AnyArbitaryLitElement extends routerOutletMixin(LitElement) {
+    
+}
+
+customElements.define('any-arbitary-lit-element', AnyArbitaryLitElement);
+```
+
+## Put the components under router outlet
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerMixin } from 'lit-element-router';
+
+class MyApp extends routerMixin(LitElement) {
+    static get routes() {
+        return [{
+            name: 'home',
+            pattern: ''
+        }, {
+            name: 'info',
+            pattern: 'info'
+        }, {
+            name: 'user',
+            pattern: 'user/:id'
+        }, {
+            name: 'not-found',
+            pattern: '*'
+        }];
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route;
+        this.params = params;
     }
 
     render() {
         return html`
-            <nav>
-                <router-link href='/'>Home</router-link>
-                <router-link href='/info'>Info</router-link>
-                <router-link href='/user/14'>user/14</router-link>
-            </nav>
-            <router-slot route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-authorized'>Not Authorized</div>
-                <div slot='not-found'>Not Found</div>
-            </router-slot>
+            <any-arbitary-lit-element current-route='${this.route}'>
+                <div route='home'>Home any-arbitary-lit-element</div>
+                <div route='info'>mY Info any-arbitary-lit-element</div>
+                <div route='user'>User ${this.params.id} any-arbitary-lit-element</div>
+                <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
+                <div route='not-found'>Not Found any-arbitary-lit-element</div>
+            </any-arbitary-lit-element>
+        `;
+}
+
+customElements.define('my-app', MyApp);
+```
+
+
+## Make any arbitary components or elements to a router link using router link mixins method
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerLinkMixin } from 'lit-element-router';
+
+export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+    
+}
+
+customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
+```
+
+## Navigate using the router navigate method
+```javascript
+import { LitElement, html } from 'lit-element';
+import { routerLinkMixin } from 'lit-element-router';
+
+export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+    constructor() {
+        super()
+        this.href = ''
+    }
+    static get properties() {
+        return {
+            href: { type: String }
+        }
+    }
+    render() {
+        return html`
+            <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
         `
+    }
+    linkClick(event) {
+        event.preventDefault();
+        this.navigate(this.href);
     }
 }
 
-customElements.define('my-app', MyApp)
+customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
 ```
+
 
 ## Browsers support
 
