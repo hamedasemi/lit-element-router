@@ -11,7 +11,6 @@ class MyApp extends routerMixin(LitElement) {
             route: { type: String },
             params: { type: Object }
         }
-    
     }
 
     static get routes() {
