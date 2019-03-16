@@ -43,7 +43,7 @@ export function parseParams(pattern, uri) {
  */
 export function patternToRegExp(pattern) {
     if (pattern) {
-        return new RegExp(pattern.replace(/:[^\s/]+/g, '([\\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+)') + '(|/)$');
+        return new RegExp('^(|/)' + pattern.replace(/:[^\s/]+/g, '([\\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff-]+)') + '(|/)$');
     } else {
         return new RegExp('(^$|^/$)');
     }

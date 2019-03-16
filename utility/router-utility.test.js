@@ -33,7 +33,7 @@ suite('parseParams()', () => {
 
 suite('patternToRegExp()', () => {
     test('should return /\\// when the input is /', () => {
-        expect(patternToRegExp('user/:id')).to.deep.equal(/user\/([\wÀ-ÖØ-öø-ÿ-]+)(|\/)$/);
+        expect(patternToRegExp('user/:id')).to.deep.equal(/^(|\/)user\/([\wÀ-ÖØ-öø-ÿ-]+)(|\/)$/);
     })
 })
 
