@@ -36,10 +36,10 @@ class MyApp extends LitElement {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query) => {
+        }], (route, params, query, data) => {
             this.route = route
             this.params = params
-            console.log(route, params, query)
+            console.log(route, params, query, data)
         })
     }
 

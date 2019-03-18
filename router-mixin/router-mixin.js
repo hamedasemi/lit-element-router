@@ -38,16 +38,16 @@ export let routerMixin = (superclass) => class extends superclass {
 
             if (route.guard && typeof route.guard === 'function') {
 
-                this.canceled = false
+                this.canceled = false;
                 Promise.resolve(route.guard())
                     .then((allowed) => {
                         if (!this.canceled) {
                             if (allowed) {
-                                route.callback && route.callback(route.name, route.params, route.query, route.data)
+                                route.callback && route.callback(route.name, route.params, route.query, route.data);
                                 callback(route.name, route.params, route.query, route.data);
                             } else {
-                                route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                                callback('not-authorized', {}, {}, {});
+                                route.callback && route.callback('not-authorized', route.params, route.query, route.data);
+                                callback('not-authorized', route.params, route.query, route.data);
                             }
                         }
                     })
@@ -56,10 +56,10 @@ export let routerMixin = (superclass) => class extends superclass {
                 callback(route.name, route.params, route.query, route.data);
             }
         } else if (notFoundRoute) {
-            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
-            callback(notFoundRoute.name, {}, {}, {});
+            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data)
+            callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data);
         } else {
-            callback('not-found', {}, {}, {});
+            callback('not-found', {}, parseQuery(querystring), notFoundRoute.data);
         }
 
         if (super.router) super.router();
