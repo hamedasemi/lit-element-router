@@ -44,7 +44,7 @@ export function router(routes, callback) {
                         callback(route.name, route.params, route.query, route.data);
                     } else {
                         route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                        callback('not-authorized', {}, {}, {});
+                        callback('not-authorized', route.params, route.query, route.data);
                     }
                 })
         } else {
@@ -52,9 +52,9 @@ export function router(routes, callback) {
             callback(route.name, route.params, route.query, route.data);
         }
     } else if (notFoundRoute) {
-        notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
-        callback(notFoundRoute.name, {}, {}, {});
+        notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data)
+        callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data);
     } else {
-        callback('not-found', {}, {}, {});
+        callback('not-found', {}, parseQuery(querystring), notFoundRoute.data);
     }
 }

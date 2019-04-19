@@ -7,9 +7,9 @@ export class RouterSlot extends LitElement {
         }
     }
     updated(updatedProperties) {
-        updatedProperties.has('route') && this.slot()
+        updatedProperties.has('route') && this.slott()
     }
-    slot() {
+    slott() {
         if (this.route.length) {
             ([...this.shadowRoot.querySelectorAll(`[slot]`)]).map((selected) => {
                 this.appendChild(selected)
