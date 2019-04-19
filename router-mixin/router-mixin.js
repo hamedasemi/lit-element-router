@@ -87,12 +87,29 @@ export let routerOutletMixin = (superclass) => class extends superclass {
         }
     }
 
+    createBucket () {
+        const bucketName = "bucket_" + new Date().getTime();
+        let bucket = document.getElementById(bucketName);
+        if (bucket) {
+            while (bucket.firstChild) {
+                bucket.removeChild(bucket.firstChild);
+            }
+        }
+        else {
+            bucket = document.createElement('div');
+            bucket.id = bucketName;
+            this.parentNode.insertBefore(bucket, this);
+        }
+        return bucketName;
+    }
+
     updated(updatedProperties) {
         updatedProperties.has('currentRoute') && this.routerOutlet();
         if (super.updated) super.updated();
     }
 
     firstUpdated() {
+        this.bucketName = this.createBucket();
         this.routerOutlet();
     }
 
