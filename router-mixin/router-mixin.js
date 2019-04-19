@@ -8,13 +8,16 @@ export let routerMixin = (superclass) => class extends superclass {
 
     static get properties() {
         return {
-            route: { type: String, reflect: true, attribute: 'route' }
+            route: { type: String, reflect: true, attribute: 'route' },
+            canceled: { type: Boolean }
         }
     }
 
     firstUpdated() {
+        
+        this.router(this.constructor.routes, (...args) => this.onRoute(...args));
         window.addEventListener('route', () => {
-            this.router.call(this, this.globalRoutes, this.globalCallback);
+            this.router(this.constructor.routes, (...args) => this.onRoute(...args));
         })
 
         window.onpopstate = () => {
@@ -24,8 +27,7 @@ export let routerMixin = (superclass) => class extends superclass {
     }
 
     router(routes, callback) {
-        this.globalRoutes = routes;
-        this.globalCallback = callback;
+        this.canceled = true;
 
         const uri = decodeURI(window.location.pathname);
         const querystring = decodeURI(window.location.search);
@@ -40,14 +42,18 @@ export let routerMixin = (superclass) => class extends superclass {
             route.query = parseQuery(querystring);
 
             if (route.guard && typeof route.guard === 'function') {
+
+                this.canceled = false;
                 Promise.resolve(route.guard())
                     .then((allowed) => {
-                        if (allowed) {
-                            route.callback && route.callback(route.name, route.params, route.query, route.data)
-                            callback(route.name, route.params, route.query, route.data);
-                        } else {
-                            route.callback && route.callback('not-authorized', route.params, route.query, route.data)
-                            callback('not-authorized', {}, {}, {});
+                        if (!this.canceled) {
+                            if (allowed) {
+                                route.callback && route.callback(route.name, route.params, route.query, route.data);
+                                callback(route.name, route.params, route.query, route.data);
+                            } else {
+                                route.callback && route.callback('not-authorized', route.params, route.query, route.data);
+                                callback('not-authorized', route.params, route.query, route.data);
+                            }
                         }
                     })
             } else {
@@ -55,10 +61,10 @@ export let routerMixin = (superclass) => class extends superclass {
                 callback(route.name, route.params, route.query, route.data);
             }
         } else if (notFoundRoute) {
-            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, {})
-            callback(notFoundRoute.name, {}, {}, {});
+            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data)
+            callback(notFoundRoute.name, {}, parseQuery(querystring), notFoundRoute.data);
         } else {
-            callback('not-found', {}, {}, {});
+            callback('not-found', {}, parseQuery(querystring), notFoundRoute.data);
         }
 
         if (super.router) super.router();
@@ -87,6 +93,11 @@ export let routerOutletMixin = (superclass) => class extends superclass {
         }
     }
 
+    updated(updatedProperties) {
+        updatedProperties.has('currentRoute') && this.routerOutlet();
+        if (super.updated) super.updated();
+    }
+
     createBucket () {
         const bucketName = "bucket_" + new Date().getTime();
         let bucket = document.getElementById(bucketName);
@@ -101,11 +112,6 @@ export let routerOutletMixin = (superclass) => class extends superclass {
             this.parentNode.insertBefore(bucket, this);
         }
         return bucketName;
-    }
-
-    updated(updatedProperties) {
-        updatedProperties.has('currentRoute') && this.routerOutlet();
-        if (super.updated) super.updated();
     }
 
     firstUpdated() {

@@ -1,10 +1,14 @@
 import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
 import { LitElement, html } from 'lit-element'
 import { routerMixin } from './lit-element-router'
-import { } from './router-mixin/any-arbitary-lit-element'
-import { } from './router-mixin/an-arbitary-lit-element'
+import {} from './router-mixin/any-arbitary-lit-element'
+import {} from './router-mixin/an-arbitary-lit-element'
 
 class MyApp extends routerMixin(LitElement) {
+
+    createRenderRoot() {
+        return this;
+    }
 
     static get properties() {
         return {
@@ -13,15 +17,12 @@ class MyApp extends routerMixin(LitElement) {
         }
     }
 
-    constructor() {
-        super()
-        this.route = ''
-        this.params = {}
-        this.router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: '',
-            data: {title: 'Home'},
-            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
+            data: { title: 'Home' },
+            callback: (route, params, query) => { console.log('callback', route, params, query) },
             guard: () => { return true }
         }, {
             name: 'info',
@@ -39,11 +40,19 @@ class MyApp extends routerMixin(LitElement) {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            this.route = route
-            this.params = params
-            console.log(route, params, query, data)
-        })
+        }];
+    }
+
+    constructor() {
+        super()
+        this.route = ''
+        this.params = {}
+    }
+
+    onRoute(route, params, query, data) {
+        this.route = route
+        this.params = params
+        console.log(route, params, query, data)
     }
 
     render() {
@@ -53,13 +62,23 @@ class MyApp extends routerMixin(LitElement) {
             <an-arbitary-lit-element href="/user/14">user/14</an-arbitary-lit-element>
             <an-arbitary-lit-element href="/user/16">user/16</an-arbitary-lit-element>
             <an-arbitary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitary-lit-element>
-
+ 
             <any-arbitary-lit-element current-route='${this.route}'>
-                <div route='home'>Home any-arbitary-lit-element</div>
-                <div route='info'>mY Info any-arbitary-lit-element</div>
-                <div route='user'>User ${this.params.id} any-arbitary-lit-element</div>
-                <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
-                <div route='not-found'>Not Found any-arbitary-lit-element</div>
+                <template route='home'>
+                    <p>Home any-arbitary-lit-element</p>
+                </template>
+                <template route='info'>
+                    <p>My Info any-arbitary-lit-element</p>
+                </template>
+                <template route='user'>
+                    <p>User ${this.params.id} any-arbitary-lit-element</p>
+                </template>
+                <template route='not-authorized'>
+                    <p>Not Authorized any-arbitary-lit-element</p>
+                </template>
+                <template route='not-found'>
+                    <p>Not Found any-arbitary-lit-element</p>
+                </template>
             </any-arbitary-lit-element>
         `
     }
