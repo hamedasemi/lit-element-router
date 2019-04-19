@@ -77,6 +77,10 @@ export let routerLinkMixin = (superclass) => class extends superclass {
 
 export let routerOutletMixin = (superclass) => class extends superclass {
 
+    createRendeRoot () {
+        return this;
+    }
+
     static get properties() {
         return {
             currentRoute: { type: String, reflect: true, attribute: 'current-route' }
