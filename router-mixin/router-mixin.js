@@ -1,6 +1,11 @@
 import { parseParams, parseQuery, testRoute } from '../utility/router-utility';
 
 export let routerMixin = (superclass) => class extends superclass {
+
+    createRendeRoot() {
+        return this;
+    }
+
     static get properties() {
         return {
             route: { type: String, reflect: true, attribute: 'route' }
