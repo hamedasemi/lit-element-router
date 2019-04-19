@@ -52,7 +52,7 @@ customElements.define('my-app', MyApp)
 
 ```javascript
 import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from 'lit-element-router'
+import { router, RouteContainer, RouterLink } from 'lit-element-router'
 
 class MyApp extends LitElement {
 
@@ -91,12 +91,12 @@ class MyApp extends LitElement {
                 <router-link href='/info'>Info</router-link>
                 <router-link href='/user/14'>user/14</router-link>
             </nav>
-            <router-slot route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-found'>Not Found</div>
-            </router-slot>
+            <route-container route='${this.route}'>
+                <template route='home'>Home</template>
+                <template route='info'>Info</template>
+                <template route='user'>User ${this.params.id}</template>
+                <template route='not-found'>Not Found</template>
+            </route-container>
         `
     }
 }
@@ -109,7 +109,7 @@ customElements.define('my-app', MyApp)
 
 ```javascript
 import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from 'lit-element-router'
+import { router, RouteContainer, RouterLink } from 'lit-element-router'
 
 class MyApp extends LitElement {
 
@@ -159,13 +159,13 @@ class MyApp extends LitElement {
                 <router-link href='/info'>Info</router-link>
                 <router-link href='/user/14'>user/14</router-link>
             </nav>
-            <router-slot route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-authorized'>Not Authorized</div>
-                <div slot='not-found'>Not Found</div>
-            </router-slot>
+            <route-container route='${this.route}'>
+                <template route='home'>Home</template>
+                <template route='info'>Info</template>
+                <template route='user'>User ${this.params.id}</template>
+                <template route='not-authorized'>Not Authorized</template>
+                <template route='not-found'>Not Found</template>
+            </route-container>
         `
     }
 }
