@@ -57,11 +57,11 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <an-arbitary-lit-element href="/">Home</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/info">Info</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/14">user/14</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/16">user/16</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitary-lit-element>
+            <a is="route-link" href="/">Home</a>
+            <a is="route-link" href="/info">Info</a>
+            <a is="route-link" href="/user/14">user/14</a>
+            <a is="route-link" href="/user/16">user/16</a>
+            <a is="route-link" href="/user/16/not/found">user/16/not/found</a>
  
             <any-arbitary-lit-element current-route='${this.route}'>
                 <template route='home'>
