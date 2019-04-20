@@ -169,33 +169,24 @@ export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
 customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
 ```
 
-## Navigate using the router navigate method
+## Navigate using the router navigate method, using extensible elements, thus making a natural development, without strange names, the same "a" as always.
 ```javascript
-import { LitElement, html } from 'lit-element';
-import { routerLinkMixin } from 'lit-element-router';
+import { routerLinkMixin } from 'lit-element-router'
 
-export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+export class RouterLink extends routerLinkMixin(HTMLAnchorElement) {
     constructor() {
         super()
-        this.href = ''
+        this.href = this.href;
+        this.addEventListener('click', e => this.linkClick(e));
     }
-    static get properties() {
-        return {
-            href: { type: String }
-        }
-    }
-    render() {
-        return html`
-            <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
-        `
-    }
+
     linkClick(event) {
         event.preventDefault();
         this.navigate(this.href);
     }
 }
 
-customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
+customElements.define('route-link', RouterLink, {extends: 'a'})
 ```
 
 
