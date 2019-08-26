@@ -9,7 +9,7 @@ export let routerMixin = (superclass) => class extends superclass {
     }
 
     firstUpdated() {
-        
+
         this.router(this.constructor.routes, (...args) => this.onRoute(...args));
         window.addEventListener('route', () => {
             this.router(this.constructor.routes, (...args) => this.onRoute(...args));
@@ -26,14 +26,19 @@ export let routerMixin = (superclass) => class extends superclass {
 
         const uri = decodeURI(window.location.pathname);
         const querystring = decodeURI(window.location.search);
+        const hash = decodeURI(window.location.hash);
+        const testRouteOptions = { uri: uri, querystring: querystring, hash: hash };
 
         let notFoundRoute = routes.filter(route => route.pattern === '*')[0];
 
-        routes = routes.filter(route => route.pattern !== '*' && testRoute(uri, route.pattern));
+        routes = routes.filter(route => route.pattern !== '*' && testRoute(route, testRouteOptions));
 
         if (routes.length) {
             let route = routes[0];
-            route.params = parseParams(route.pattern, uri);
+            let routePattern = route.useHash ? "#/" + route.pattern : route.pattern;
+            let paramLocation = route.useHash ? hash : uri;
+
+            route.params = parseParams(routePattern, paramLocation);
             route.query = parseQuery(querystring);
 
             if (route.guard && typeof route.guard === 'function') {
