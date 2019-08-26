@@ -24,10 +24,12 @@ export function router(routes, callback) {
 
     const uri = decodeURI(window.location.pathname);
     const querystring = decodeURI(window.location.search);
+    const hash = decodeURI(window.location.hash);
+    const testRouteOptions = { uri: uri, querystring: querystring, hash: hash };
 
     let notFoundRoute = routes.filter(route => route.pattern === '*')[0];
 
-    routes = routes.filter(route => route.pattern !== '*' && testRoute(uri, route.pattern));
+    routes = routes.filter(route => route.pattern !== '*' && testRoute(route, testRouteOptions));
 
     if (routes.length) {
         let route = routes[0];
