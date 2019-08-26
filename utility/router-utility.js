@@ -49,8 +49,17 @@ export function patternToRegExp(pattern) {
     }
 }
 
-export function testRoute(uri, pattern) {
-    if (patternToRegExp(pattern).test(uri)) {
+export function testRoute(route, options) {
+
+    const patternToCheck = route.useHash ? "#/" + route.pattern : route.pattern;
+    let uriToCheck = options.uri;
+
+    if (options.hash) {
+        uriToCheck = options.hash;
+    }
+
+    if (patternToRegExp(patternToCheck).test(uriToCheck)) {
         return true;
     }
+
 }
