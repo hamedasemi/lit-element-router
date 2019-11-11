@@ -56,7 +56,7 @@ customElements.define('my-app', MyApp);
 # Complete Example Using JavaScript Mixins in Details
 
 ## Dont like mixins check out other examples
-Don't want to use mixins interface you cane use a simple version in this tutorial:  https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
+Don't want to use mixins interface you can use a simple version in this tutorial:  https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
 
 ## Make any arbitary components or elements to a router using router mixins method
 ```javascript
