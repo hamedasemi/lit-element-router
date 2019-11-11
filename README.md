@@ -58,7 +58,7 @@ customElements.define('my-app', MyApp);
 ## Dont like mixins check out other examples
 Don't want to use mixins interface you can use a simple version in this tutorial:  https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
 
-## Make any arbitary components or elements to a router using router mixins method
+## Make any arbitrary components or elements to a router using router mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
@@ -102,16 +102,16 @@ customElements.define('my-app', MyApp);
 ```
 
 
-## Make any arbitary components or elements to a router outlet using router outlet mixins method
+## Make any arbitrary components or elements to a router outlet using router outlet mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerOutletMixin } from 'lit-element-router';
 
-export class AnyArbitaryLitElement extends routerOutletMixin(LitElement) {
+export class AnyArbitraryLitElement extends routerOutletMixin(LitElement) {
     
 }
 
-customElements.define('any-arbitary-lit-element', AnyArbitaryLitElement);
+customElements.define('any-arbitrary-lit-element', AnyArbitraryLitElement);
 ```
 
 ## Put the components under router outlet
@@ -143,13 +143,13 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <any-arbitary-lit-element current-route='${this.route}'>
-                <div route='home'>Home any-arbitary-lit-element</div>
-                <div route='info'>mY Info any-arbitary-lit-element</div>
-                <div route='user'>User ${this.params.id} any-arbitary-lit-element</div>
-                <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
-                <div route='not-found'>Not Found any-arbitary-lit-element</div>
-            </any-arbitary-lit-element>
+            <any-arbitrary-lit-element current-route='${this.route}'>
+                <div route='home'>Home any-arbitrary-lit-element</div>
+                <div route='info'>mY Info any-arbitrary-lit-element</div>
+                <div route='user'>User ${this.params.id} any-arbitrary-lit-element</div>
+                <div route='not-authorized'>Not Authorized any-arbitrary-lit-element</div>
+                <div route='not-found'>Not Found any-arbitrary-lit-element</div>
+            </any-arbitrary-lit-element>
         `;
 }
 
@@ -157,16 +157,16 @@ customElements.define('my-app', MyApp);
 ```
 
 
-## Make any arbitary components or elements to a router link using router link mixins method
+## Make any arbitrary components or elements to a router link using router link mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerLinkMixin } from 'lit-element-router';
 
-export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
     
 }
 
-customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
+customElements.define('an-arbitrary-lit-element', AnArbitraryLitElement);
 ```
 
 ## Navigate using the router navigate method
@@ -174,7 +174,7 @@ customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
 import { LitElement, html } from 'lit-element';
 import { routerLinkMixin } from 'lit-element-router';
 
-export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
     constructor() {
         super()
         this.href = ''
@@ -195,7 +195,7 @@ export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
     }
 }
 
-customElements.define('an-arbitary-lit-element', AnArbitaryLitElement);
+customElements.define('an-arbitrary-lit-element', AnArbitraryLitElement);
 ```
 
 
