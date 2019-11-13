@@ -1,6 +1,11 @@
 import { parseParams, parseQuery, testRoute } from '../utility/router-utility';
 
 export let routerMixin = (superclass) => class extends superclass {
+
+    createRendeRoot() {
+        return this;
+    }
+
     static get properties() {
         return {
             route: { type: String, reflect: true, attribute: 'route' },
@@ -78,6 +83,10 @@ export let routerLinkMixin = (superclass) => class extends superclass {
 
 export let routerOutletMixin = (superclass) => class extends superclass {
 
+    createRendeRoot () {
+        return this;
+    }
+
     static get properties() {
         return {
             currentRoute: { type: String, reflect: true, attribute: 'current-route' }
@@ -89,20 +98,38 @@ export let routerOutletMixin = (superclass) => class extends superclass {
         if (super.updated) super.updated();
     }
 
+    createBucket () {
+        const bucketName = "bucket_" + new Date().getTime();
+        let bucket = document.getElementById(bucketName);
+        if (bucket) {
+            while (bucket.firstChild) {
+                bucket.removeChild(bucket.firstChild);
+            }
+        }
+        else {
+            bucket = document.createElement('div');
+            bucket.id = bucketName;
+            this.parentNode.insertBefore(bucket, this);
+        }
+        return bucketName;
+    }
+
     firstUpdated() {
+        this.bucketName = this.createBucket();
         this.routerOutlet();
     }
 
     routerOutlet() {
-        Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map((selected) => {
-            this.appendChild(selected);
+        let bucket = document.getElementById(this.bucketName);
+        Array.from(this.querySelectorAll(`template[route]`)).map((selected) => {
+            bucket.innerHTML = selected.innerHTML;
         });
+
         if (this.currentRoute) {
-            Array.from(this.querySelectorAll(`[route~=${this.currentRoute}]`)).map((selected) => {
-                this.shadowRoot.appendChild(selected)
+            Array.from(this.querySelectorAll(`template[route~=${this.currentRoute}]`)).map((selected) => {
+                bucket.innerHTML = selected.innerHTML;
             });
         }
-
         if (super.routerOutlet) super.routerOutlet();
     }
 };
