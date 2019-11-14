@@ -8,20 +8,20 @@ export let routerMixin = (superclass) => class extends superclass {
         }
     }
 
-    firstUpdated() {
-        
-        this.router(this.constructor.routes, (...args) => this.onRoute(...args));
+    connectedCallback(...args) {
+        super.connectedCallback(...args);
+
+        this.routing(this.constructor.routes, (...args) => this.router(...args));
         window.addEventListener('route', () => {
-            this.router(this.constructor.routes, (...args) => this.onRoute(...args));
+            this.routing(this.constructor.routes, (...args) => this.router(...args));
         })
 
         window.onpopstate = () => {
             window.dispatchEvent(new CustomEvent('route'));
         }
-        if (super.firstUpdated) super.firstUpdated();
     }
 
-    router(routes, callback) {
+    routing(routes, callback) {
         this.canceled = true;
 
         const uri = decodeURI(window.location.pathname);
@@ -61,18 +61,13 @@ export let routerMixin = (superclass) => class extends superclass {
         } else {
             callback('not-found', {}, parseQuery(querystring), notFoundRoute.data);
         }
-
-        if (super.router) super.router();
     }
 };
 
 export let routerLinkMixin = (superclass) => class extends superclass {
-
     navigate(href) {
-        window.history.pushState({}, null, href + window.location.search);
+        window.history.pushState({}, null, href);
         window.dispatchEvent(new CustomEvent('route'));
-
-        if (super.navigate) super.navigate();
     }
 };
 
@@ -84,25 +79,38 @@ export let routerOutletMixin = (superclass) => class extends superclass {
         }
     }
 
-    updated(updatedProperties) {
-        updatedProperties.has('currentRoute') && this.routerOutlet();
-        if (super.updated) super.updated();
+    constructor() {
+        super();
+
+        let newStyleSheet = new CSSStyleSheet;
+        newStyleSheet.replaceSync( `
+            ::slotted([route]:not([selected])) { display: none; }
+            [route]:not([selected]) { display: none; }
+        `);
+
+        this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, newStyleSheet];
     }
 
-    firstUpdated() {
+    attributeChangedCallback(...args) {
+        super.attributeChangedCallback(...args);
+
+        args[0] === 'current-route' && this.routerOutlet();
+    }
+
+    connectedCallback(...args) {
+        super.connectedCallback(...args);
+        
         this.routerOutlet();
     }
 
     routerOutlet() {
-        Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map((selected) => {
-            this.appendChild(selected);
+        Array.from(this.querySelectorAll(`[route]`)).map((selected) => {
+            selected.removeAttribute('selected');
         });
         if (this.currentRoute) {
             Array.from(this.querySelectorAll(`[route~=${this.currentRoute}]`)).map((selected) => {
-                this.shadowRoot.appendChild(selected)
+                selected.setAttribute('selected', true);
             });
         }
-
-        if (super.routerOutlet) super.routerOutlet();
     }
 };
