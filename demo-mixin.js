@@ -1,8 +1,8 @@
 import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
 import { LitElement, html } from 'lit-element'
 import { routerMixin } from './lit-element-router'
-import { } from './router-mixin/any-arbitary-lit-element'
-import { } from './router-mixin/an-arbitary-lit-element'
+import { } from './router-mixin/any-arbitrary-lit-element'
+import { } from './router-mixin/an-arbitrary-lit-element'
 
 class MyApp extends routerMixin(LitElement) {
 
@@ -45,7 +45,7 @@ class MyApp extends routerMixin(LitElement) {
         this.params = {}
     }
 
-    onRoute(route, params, query, data) {
+    router(route, params, query, data) {
         this.route = route
         this.params = params
         console.log(route, params, query, data)
@@ -53,19 +53,20 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <an-arbitary-lit-element href="/">Home</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/info">Info</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/14">user/14</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/16">user/16</an-arbitary-lit-element>
-            <an-arbitary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitary-lit-element>
+            <an-arbitrary-lit-element href="/">Home</an-arbitrary-lit-element>
+            <an-arbitrary-lit-element href="/info">Info</an-arbitrary-lit-element>
+            <an-arbitrary-lit-element href="/info?foo=bar">Info</an-arbitrary-lit-element>
+            <an-arbitrary-lit-element href="/user/14">user/14</an-arbitrary-lit-element>
+            <an-arbitrary-lit-element href="/user/16">user/16</an-arbitrary-lit-element>
+            <an-arbitrary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitrary-lit-element>
 
-            <any-arbitary-lit-element current-route='${this.route}'>
-                <div route='home'>Home any-arbitary-lit-element</div>
-                <div route='info'>mY Info any-arbitary-lit-element</div>
-                <div route='user'>User ${this.params.id} any-arbitary-lit-element</div>
-                <div route='not-authorized'>Not Authorized any-arbitary-lit-element</div>
-                <div route='not-found'>Not Found any-arbitary-lit-element</div>
-            </any-arbitary-lit-element>
+            <any-arbitrary-lit-element current-route='${this.route}'>
+                <div route='home'>Home any-arbitrary-lit-element</div>
+                <div route='info'>mY Info any-arbitrary-lit-element</div>
+                <div route='user'>User ${this.params.id} any-arbitrary-lit-element</div>
+                <div route='not-authorized'>Not Authorized any-arbitrary-lit-element</div>
+                <div route='not-found'>Not Found any-arbitrary-lit-element</div>
+            </any-arbitrary-lit-element>
         `
     }
 }
