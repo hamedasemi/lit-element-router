@@ -43,7 +43,7 @@ class MyApp extends routerMixin(LitElement) {
         }];
     }
 
-    onRoute(route, params, query, data) {
+    router(route, params, query, data) {
         console.log(route, params, query, data)
     }
 }
@@ -70,7 +70,7 @@ class MyApp extends routerMixin(LitElement) {
 customElements.define('my-app', MyApp);
 ```
 
-## Register routes and the onRoute function
+## Register routes and the router function
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
@@ -92,7 +92,7 @@ class MyApp extends routerMixin(LitElement) {
         }];
     }
 
-    onRoute(route, params, query, data) {
+    router(route, params, query, data) {
         this.route = route;
         this.params = params;
     }
@@ -108,7 +108,11 @@ import { LitElement, html } from 'lit-element';
 import { routerOutletMixin } from 'lit-element-router';
 
 export class AnyArbitraryLitElement extends routerOutletMixin(LitElement) {
-    
+    render() {
+        return html `
+            <slot></slot>
+        `
+    }
 }
 
 customElements.define('any-arbitrary-lit-element', AnyArbitraryLitElement);
@@ -136,7 +140,7 @@ class MyApp extends routerMixin(LitElement) {
         }];
     }
 
-    onRoute(route, params, query, data) {
+    router(route, params, query, data) {
         this.route = route;
         this.params = params;
     }
