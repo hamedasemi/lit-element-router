@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element'
 import { routerLinkMixin } from '../lit-element-router'
 
-export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
+export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
     constructor() {
         super()
         this.href = ''
@@ -22,4 +22,4 @@ export class AnArbitaryLitElement extends routerLinkMixin(LitElement) {
     }
 }
 
-customElements.define('an-arbitary-lit-element', AnArbitaryLitElement)
+customElements.define('an-arbitrary-lit-element', AnArbitraryLitElement)
