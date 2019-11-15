@@ -96,11 +96,11 @@ class App extends routerMixin(LitElement) {
             <app-link href="/user/16/not/found">user/16/not/found</app-link>
 
             <app-main active-route='${this.route}'>
-                <div route='home'>Home any-arbitrary-lit-element</div>
-                <div route='info'>mY Info any-arbitrary-lit-element</div>
-                <div route='user'>User ${this.params.id} any-arbitrary-lit-element</div>
-                <div route='not-authorized'>Not Authorized any-arbitrary-lit-element</div>
-                <div route='not-found'>Not Found any-arbitrary-lit-element</div>
+                <div route='home'>Home</div>
+                <div route='info'>Info</div>
+                <div route='user'>User ${this.params.id}</div>
+                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-found'>Not Found</div>
             </app-main>
         `
     }
