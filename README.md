@@ -24,7 +24,7 @@ You can find a working project on StackBlitz https://stackblitz.com/edit/lit-ele
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
 
-class MyApp extends routerMixin(LitElement) {
+class App extends routerMixin(LitElement) {
 
     static get routes() {
         return [{
@@ -48,7 +48,7 @@ class MyApp extends routerMixin(LitElement) {
     }
 }
 
-customElements.define('my-app', MyApp);
+customElements.define('my-app', App);
 ```   
 
 
@@ -63,11 +63,11 @@ Don't want to use mixins interface you can use a simple version in this tutorial
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
 
-class MyApp extends routerMixin(LitElement) {
+class App extends routerMixin(LitElement) {
 
 }
 
-customElements.define('my-app', MyApp);
+customElements.define('my-app', App);
 ```
 
 ## Register routes and the router function
@@ -75,7 +75,7 @@ customElements.define('my-app', MyApp);
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
 
-class MyApp extends routerMixin(LitElement) {
+class App extends routerMixin(LitElement) {
     static get routes() {
         return [{
             name: 'home',
@@ -98,16 +98,16 @@ class MyApp extends routerMixin(LitElement) {
     }
 }
 
-customElements.define('my-app', MyApp);
+customElements.define('my-app', App);
 ```
 
 
 ## Make any arbitrary components or elements to a router outlet using router outlet mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { routerOutletMixin } from 'lit-element-router';
+import { outletMixin } from 'lit-element-router';
 
-export class AnyArbitraryLitElement extends routerOutletMixin(LitElement) {
+export class Main extends outletMixin(LitElement) {
     render() {
         return html `
             <slot></slot>
@@ -115,7 +115,7 @@ export class AnyArbitraryLitElement extends routerOutletMixin(LitElement) {
     }
 }
 
-customElements.define('any-arbitrary-lit-element', AnyArbitraryLitElement);
+customElements.define('app-main', Main);
 ```
 
 ## Put the components under router outlet
@@ -123,7 +123,7 @@ customElements.define('any-arbitrary-lit-element', AnyArbitraryLitElement);
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
 
-class MyApp extends routerMixin(LitElement) {
+class App extends routerMixin(LitElement) {
     static get routes() {
         return [{
             name: 'home',
@@ -147,38 +147,38 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <any-arbitrary-lit-element current-route='${this.route}'>
-                <div route='home'>Home any-arbitrary-lit-element</div>
-                <div route='info'>mY Info any-arbitrary-lit-element</div>
-                <div route='user'>User ${this.params.id} any-arbitrary-lit-element</div>
-                <div route='not-authorized'>Not Authorized any-arbitrary-lit-element</div>
-                <div route='not-found'>Not Found any-arbitrary-lit-element</div>
-            </any-arbitrary-lit-element>
+            <app-main current-route='${this.route}'>
+                <div route='home'>Home</div>
+                <div route='info'>Info</div>
+                <div route='user'>User ${this.params.id}</div>
+                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-found'>Not Found</div>
+            </app-main>
         `;
 }
 
-customElements.define('my-app', MyApp);
+customElements.define('my-app', App);
 ```
 
 
 ## Make any arbitrary components or elements to a router link using router link mixins method
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { routerLinkMixin } from 'lit-element-router';
+import { linkMixin } from 'lit-element-router';
 
-export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
+export class Link extends linkMixin(LitElement) {
     
 }
 
-customElements.define('an-arbitrary-lit-element', AnArbitraryLitElement);
+customElements.define('app-link', Link);
 ```
 
 ## Navigate using the router navigate method
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { routerLinkMixin } from 'lit-element-router';
+import { linkMixin } from 'lit-element-router';
 
-export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
+export class Link extends linkMixin(LitElement) {
     constructor() {
         super()
         this.href = ''
@@ -199,7 +199,7 @@ export class AnArbitraryLitElement extends routerLinkMixin(LitElement) {
     }
 }
 
-customElements.define('an-arbitrary-lit-element', AnArbitraryLitElement);
+customElements.define('app-link', Link);
 ```
 
 
