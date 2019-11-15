@@ -1,10 +1,45 @@
-import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
-import { LitElement, html } from 'lit-element'
-import { routerMixin } from './lit-element-router'
-import { } from './router-mixin/any-arbitrary-lit-element'
-import { } from './router-mixin/an-arbitrary-lit-element'
+// @ts-check
+import { LitElement, html, css } from 'lit-element'
+import { routerMixin, outletMixin, linkMixin } from './lit-element-router'
 
-class MyApp extends routerMixin(LitElement) {
+export class Link extends linkMixin(LitElement) {
+    constructor() {
+        super()
+        this.href = ''
+    }
+    static get properties() {
+        return {
+            href: { type: String }
+        }
+    }
+    render() {
+        return html`
+            <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
+        `
+    }
+    linkClick(event) {
+        event.preventDefault();
+        this.navigate(this.href);
+    }
+}
+
+export class Main extends outletMixin(LitElement) {
+    static get styles() {
+        return css `
+            :host {
+               color: gray;
+            }
+        `;
+    }
+
+    render() {
+        return html `
+            <slot></slot>
+        `
+    }
+}
+
+class App extends routerMixin(LitElement) {
 
     static get properties() {
         return {
@@ -53,22 +88,24 @@ class MyApp extends routerMixin(LitElement) {
 
     render() {
         return html`
-            <an-arbitrary-lit-element href="/">Home</an-arbitrary-lit-element>
-            <an-arbitrary-lit-element href="/info">Info</an-arbitrary-lit-element>
-            <an-arbitrary-lit-element href="/info?foo=bar">Info</an-arbitrary-lit-element>
-            <an-arbitrary-lit-element href="/user/14">user/14</an-arbitrary-lit-element>
-            <an-arbitrary-lit-element href="/user/16">user/16</an-arbitrary-lit-element>
-            <an-arbitrary-lit-element href="/user/16/not/found">user/16/not/found</an-arbitrary-lit-element>
+            <app-link href="/">Home</app-link>
+            <app-link href="/info">Info</app-link>
+            <app-link href="/info?foo=bar">Info</app-link>
+            <app-link href="/user/14">user/14</app-link>
+            <app-link href="/user/16">user/16</app-link>
+            <app-link href="/user/16/not/found">user/16/not/found</app-link>
 
-            <any-arbitrary-lit-element current-route='${this.route}'>
+            <app-main active-route='${this.route}'>
                 <div route='home'>Home any-arbitrary-lit-element</div>
                 <div route='info'>mY Info any-arbitrary-lit-element</div>
                 <div route='user'>User ${this.params.id} any-arbitrary-lit-element</div>
                 <div route='not-authorized'>Not Authorized any-arbitrary-lit-element</div>
                 <div route='not-found'>Not Found any-arbitrary-lit-element</div>
-            </any-arbitrary-lit-element>
+            </app-main>
         `
     }
 }
 
-customElements.define('my-app', MyApp)
+customElements.define('app-link', Link)
+customElements.define('app-main', Main)
+customElements.define('my-app', App)
