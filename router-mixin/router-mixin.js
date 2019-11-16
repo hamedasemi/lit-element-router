@@ -78,10 +78,10 @@ export let outletMixin = (superclass) => class extends superclass {
     constructor() {
         super();
 
-        let newStyleSheet = new CSSStyleSheet;
-        newStyleSheet.replaceSync( `::slotted([route]:not([active])) { display: none; }`);
+        // let newStyleSheet = new CSSStyleSheet;
+        // newStyleSheet.replaceSync( `::slotted([route]:not([active])) { display: none; }`);
 
-        this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, newStyleSheet];
+        // this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, newStyleSheet];
     }
 
     attributeChangedCallback(...args) {
@@ -98,11 +98,11 @@ export let outletMixin = (superclass) => class extends superclass {
 
     outlet() {
         Array.from(this.querySelectorAll(`[route]`)).map((active) => {
-            active.removeAttribute('active');
+            active.style.display = "none";
         });
         if (this.activeRoute) {
             Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map((active) => {
-                active.setAttribute('active', true);
+                active.style.display = null;
             });
         }
     }
