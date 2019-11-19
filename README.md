@@ -5,7 +5,7 @@ A simple and lightweight LitElement Router that using JavaScript Mixin.
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/lit-element-router)
 [![Known Vulnerabilities](https://snyk.io/test/github/hamedasemi/lit-element-router/badge.svg?targetFile=package.json)](https://snyk.io/test/github/hamedasemi/lit-element-router?targetFile=package.json)
-[![CircleCI](https://circleci.com/gh/hamedasemi/lit-element-router/tree/mainline.svg?style=svg)](https://circleci.com/gh/hamedasemi/lit-element-router/tree/mainline)
+[![CircleCI](https://circleci.com/gh/hamedasemi/lit-element-router.svg?style=svg)](https://circleci.com/gh/hamedasemi/lit-element-router)
 
 
 # Installation
