@@ -29,31 +29,33 @@ export let routerMixin = (superclass) => class extends superclass {
 
         let notFoundRoute = routes.filter(route => route.pattern === '*')[0];
         let activeRoute = routes.filter(route => route.pattern !== '*' && testRoute(uri, route.pattern))[0];
+        let query = parseQuery(querystring);
 
         if (activeRoute) {
             activeRoute.params = parseParams(activeRoute.pattern, uri);
-            activeRoute.query = parseQuery(querystring);
+            activeRoute.data = activeRoute.data || {};
             if (activeRoute.guard && typeof activeRoute.guard === 'function') {
                 this.canceled = false;
                 Promise.resolve(activeRoute.guard())
                     .then((allowed) => {
                         if (!this.canceled) {
                             if (allowed) {
-                                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, activeRoute.query, activeRoute.data);
-                                callback(activeRoute.name, activeRoute.params, activeRoute.query, activeRoute.data);
+                                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
+                                callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
                             } else {
-                                activeRoute.callback && activeRoute.callback('not-authorized', activeRoute.params, activeRoute.query, activeRoute.data);
-                                callback('not-authorized', activeRoute.params, activeRoute.query, activeRoute.data);
+                                activeRoute.callback && activeRoute.callback('not-authorized', activeRoute.params, query, activeRoute.data);
+                                callback('not-authorized', activeRoute.params, query, activeRoute.data);
                             }
                         }
                     })
             } else {
-                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, activeRoute.query, activeRoute.data)
-                callback(activeRoute.name, activeRoute.params, activeRoute.query, activeRoute.data);
+                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, query, activeRoute.data)
+                callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
             }
         } else if (notFoundRoute) {
-            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, {}, notFoundRoute.data)
-            callback(notFoundRoute.name, {}, {}, notFoundRoute.data);
+            notFoundRoute.data = notFoundRoute.data || {};
+            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, query, notFoundRoute.data)
+            callback(notFoundRoute.name, {}, query, notFoundRoute.data);
         } else {
             callback('not-found', {}, {}, {});
         }
