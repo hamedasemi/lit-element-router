@@ -75,15 +75,6 @@ export let outletMixin = (superclass) => class extends superclass {
         }
     }
 
-    constructor() {
-        super();
-
-        // let newStyleSheet = new CSSStyleSheet;
-        // newStyleSheet.replaceSync( `::slotted([route]:not([active])) { display: none; }`);
-
-        // this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, newStyleSheet];
-    }
-
     attributeChangedCallback(...args) {
         super.attributeChangedCallback(...args);
 
