@@ -91,7 +91,7 @@ customElements.define('my-app', App);
 
 
 ## Add Router Outlet
-Add the outlet to LitElement using the outlet mixins.
+Add the outlet to LitElement using the outlet mixin.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { outletMixin } from 'lit-element-router';
