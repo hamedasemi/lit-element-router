@@ -1,5 +1,5 @@
 # LitElement Router
-A simple and lightweight LitElement Router.
+A simple and lightweight LitElement Router that using JavaScript Mixin.
 
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
@@ -8,190 +8,126 @@ A simple and lightweight LitElement Router.
 [![CircleCI](https://circleci.com/gh/hamedasemi/lit-element-router/tree/mainline.svg?style=svg)](https://circleci.com/gh/hamedasemi/lit-element-router/tree/mainline)
 
 
-## Installation
-
+# Installation
 ```sh
 npm install lit-element-router --save
 ```
 
-## Usage
 
-### Working example
-You can find a working project on StackBlitz https://stackblitz.com/edit/lit-element-router
-
-### Minimal
-```js
-import { LitElement, html } from 'lit-element';
-import { routerMixin } from 'lit-element-router';
-
-class App extends routerMixin(LitElement) {
-
-    static get routes() {
-        return [{
-            name: 'home',
-            pattern: '',
-            data: { title: 'Home' }
-        }, {
-            name: 'info',
-            pattern: 'info'
-        }, {
-            name: 'user',
-            pattern: 'user/:id'
-        }, {
-            name: 'not-found',
-            pattern: '*'
-        }];
-    }
-
-    router(route, params, query, data) {
-        console.log(route, params, query, data)
-    }
-}
-
-customElements.define('my-app', App);
-```   
+# Working Example
+You can find a working example project on StackBlitz https://stackblitz.com/edit/lit-element-router
 
 
-    
-# Complete Example Using JavaScript Mixins in Details
-
-## Dont like mixins check out other examples
-Don't want to use mixins interface you can use a simple version in this tutorial:  https://github.com/hamedasemi/lit-element-router/blob/mainline/README_NOT_MIXIN.md
-
-## Make any arbitrary components or elements to a router using router mixins method
+# Usage
+## Add Router
+Add the router to LitElement using the router mixin then register the routes and the router callback.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
 
-class App extends routerMixin(LitElement) {
-
-}
-
-customElements.define('my-app', App);
-```
-
-## Register routes and the router function
-```javascript
-import { LitElement, html } from 'lit-element';
-import { routerMixin } from 'lit-element-router';
+import './app-link';
+import './app-main';
 
 class App extends routerMixin(LitElement) {
-    static get routes() {
-        return [{
-            name: 'home',
-            pattern: ''
-        }, {
-            name: 'info',
-            pattern: 'info'
-        }, {
-            name: 'user',
-            pattern: 'user/:id'
-        }, {
-            name: 'not-found',
-            pattern: '*'
-        }];
-    }
 
-    router(route, params, query, data) {
-        this.route = route;
-        this.params = params;
-    }
+  static get properties() {
+    return {
+      route: { type: String },
+      params: { type: Object },
+      query: { type: Object }
+    };
+  }
+
+  static get routes() {
+    return [{
+      name: 'home',
+      pattern: '',
+      data: { title: 'Home' }
+    }, {
+      name: 'info',
+      pattern: 'info'
+    }, {
+      name: 'user',
+      pattern: 'user/:id'
+    }, {
+      name: 'not-found',
+      pattern: '*'
+    }];
+  }
+
+  constructor() {
+    super();
+    this.route = '';
+    this.params = {};
+    this.query = {};
+  }
+
+  router(route, params, query, data) {
+    this.route = route;
+    this.params = params;
+    this.query = query;
+    console.log(route, params, query, data);
+  }
+
+  render() {
+    return html`
+      <app-link href="/">Home</app-link>
+      <app-link href="/info">Info</app-link>
+      <app-link href="/info?data=12345">Info?data=12345</app-link>
+      <app-link href="/user/14">user/14</app-link>
+
+      <app-main active-route=${this.route}>
+          <h1 route='home'>Home</h1>
+          <h1 route='info'>Info ${this.query.data}</h1>
+          <h1 route='user'>User ${this.params.id} </h1>
+          <h1 route='not-found'>Not Found </h1>
+      </app-main>
+    `;
+  }
 }
 
 customElements.define('my-app', App);
 ```
 
 
-## Make any arbitrary components or elements to a router outlet using router outlet mixins method
+## Add Router Outlet
+Add the outlet to LitElement using the outlet mixins.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { outletMixin } from 'lit-element-router';
 
 export class Main extends outletMixin(LitElement) {
     render() {
-        return html `
-            <slot></slot>
-        `
+      return html`
+        <slot></slot>
+      `;
     }
 }
 
 customElements.define('app-main', Main);
 ```
 
-## Put the components under router outlet
-```javascript
-import { LitElement, html } from 'lit-element';
-import { routerMixin } from 'lit-element-router';
 
-class App extends routerMixin(LitElement) {
-    static get routes() {
-        return [{
-            name: 'home',
-            pattern: ''
-        }, {
-            name: 'info',
-            pattern: 'info'
-        }, {
-            name: 'user',
-            pattern: 'user/:id'
-        }, {
-            name: 'not-found',
-            pattern: '*'
-        }];
-    }
-
-    router(route, params, query, data) {
-        this.route = route;
-        this.params = params;
-    }
-
-    render() {
-        return html`
-            <app-main current-route='${this.route}'>
-                <div route='home'>Home</div>
-                <div route='info'>Info</div>
-                <div route='user'>User ${this.params.id}</div>
-                <div route='not-authorized'>Not Authorized</div>
-                <div route='not-found'>Not Found</div>
-            </app-main>
-        `;
-}
-
-customElements.define('my-app', App);
-```
-
-
-## Make any arbitrary components or elements to a router link using router link mixins method
+## Add Router Link
+Add the link to LitElement using the link mixin then use the navigate method to navigate.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { linkMixin } from 'lit-element-router';
 
 export class Link extends linkMixin(LitElement) {
-    
-}
-
-customElements.define('app-link', Link);
-```
-
-## Navigate using the router navigate method
-```javascript
-import { LitElement, html } from 'lit-element';
-import { linkMixin } from 'lit-element-router';
-
-export class Link extends linkMixin(LitElement) {
-    constructor() {
-        super()
-        this.href = ''
-    }
     static get properties() {
         return {
             href: { type: String }
-        }
+        };
+    }
+    constructor() {
+        super();
+        this.href = '';
     }
     render() {
         return html`
             <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
-        `
+        `;
     }
     linkClick(event) {
         event.preventDefault();
@@ -203,7 +139,7 @@ customElements.define('app-link', Link);
 ```
 
 
-## Browsers support
+# Supported Browsers
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
