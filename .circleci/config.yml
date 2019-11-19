@@ -38,4 +38,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: mainline
+              ignore: /.*/
