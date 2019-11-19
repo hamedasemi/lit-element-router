@@ -18,11 +18,14 @@
   "keywords": [
     "lit",
     "element",
+    "litelement",
     "router",
     "routing",
     "lit-element",
     "lit-element-router",
-    "regexp"
+    "regexp",
+    "mixin",
+    "mixins"
   ],
   "author": "hamedabolghasemi",
   "license": "ISC",
