@@ -43,8 +43,8 @@ export let routerMixin = (superclass) => class extends superclass {
                                 activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
                                 callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
                             } else {
-                                activeRoute.callback && activeRoute.callback('not-authorized', activeRoute.params, query, activeRoute.data);
-                                callback('not-authorized', activeRoute.params, query, activeRoute.data);
+                                activeRoute.callback && activeRoute.callback('not-authenticated', activeRoute.params, query, activeRoute.data);
+                                callback('not-authenticated', activeRoute.params, query, activeRoute.data);
                             }
                         }
                     })
