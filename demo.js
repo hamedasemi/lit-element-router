@@ -99,7 +99,7 @@ class App extends routerMixin(LitElement) {
                 <div route='home'>Home</div>
                 <div route='info'>Info</div>
                 <div route='user'>User ${this.params.id}</div>
-                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-authenticated'>Not Authenticated</div>
                 <div route='not-found'>Not Found</div>
             </app-main>
         `
