@@ -1,5 +1,5 @@
 # LitElement Router
-A simple and lightweight LitElement Router that using JavaScript Mixin.
+A LitElement Router that uses JavaScript Mixin and RegExp.
 
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
