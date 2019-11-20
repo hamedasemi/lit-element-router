@@ -1,8 +1,45 @@
-import { } from '@webcomponents/webcomponentsjs/webcomponents-loader.js'
-import { LitElement, html } from 'lit-element'
-import { router, RouterSlot, RouterLink } from './lit-element-router'
+// @ts-check
+import { LitElement, html, css } from 'lit-element'
+import { routerMixin, outletMixin, linkMixin } from './lit-element-router'
 
-class MyApp extends LitElement {
+export class Link extends linkMixin(LitElement) {
+    constructor() {
+        super()
+        this.href = ''
+    }
+    static get properties() {
+        return {
+            href: { type: String }
+        }
+    }
+    render() {
+        return html`
+            <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
+        `
+    }
+    linkClick(event) {
+        event.preventDefault();
+        this.navigate(this.href);
+    }
+}
+
+export class Main extends outletMixin(LitElement) {
+    static get styles() {
+        return css `
+            :host {
+               color: gray;
+            }
+        `;
+    }
+
+    render() {
+        return html `
+            <slot></slot>
+        `
+    }
+}
+
+class App extends routerMixin(LitElement) {
 
     static get properties() {
         return {
@@ -11,14 +48,12 @@ class MyApp extends LitElement {
         }
     }
 
-    constructor() {
-        super()
-        this.route = ''
-        this.params = {}
-        router([{
+    static get routes() {
+        return [{
             name: 'home',
             pattern: '',
-            callback: (route, params, query)=>{ console.log('callback', route, params, query)},
+            data: { title: 'Home' },
+            callback: (route, params, query) => { console.log('callback', route, params, query) },
             guard: () => { return true }
         }, {
             name: 'info',
@@ -36,31 +71,41 @@ class MyApp extends LitElement {
         }, {
             name: 'not-found',
             pattern: '*'
-        }], (route, params, query, data) => {
-            this.route = route
-            this.params = params
-            console.log(route, params, query, data)
-        })
+        }];
+    }
+
+    constructor() {
+        super()
+        this.route = ''
+        this.params = {}
+    }
+
+    router(route, params, query, data) {
+        this.route = route
+        this.params = params
+        console.log(route, params, query, data)
     }
 
     render() {
         return html`
-            <nav>
-                <router-link href="/">Home</router-link>
-                <router-link href="/info"><span>Info</span></router-link>
-                <router-link href="/user/14">user/14</router-link>
-                <router-link href="/user/16">user/16</router-link>
-                <router-link href="/user/16/not/found">user/16/not/found</router-link>
-            </nav>
-            <router-slot route='${this.route}'>
-                <div slot='home'>Home</div>
-                <div slot='info'>Info</div>
-                <div slot='user'>User ${this.params.id}</div>
-                <div slot='not-authorized'>Not Authorized</div>
-                <div slot='not-found'>Not Found</div>
-            </router-slot>
+            <app-link href="/">Home</app-link>
+            <app-link href="/info">Info</app-link>
+            <app-link href="/info?foo=bar">Info</app-link>
+            <app-link href="/user/14">user/14</app-link>
+            <app-link href="/user/16">user/16</app-link>
+            <app-link href="/user/16/not/found">user/16/not/found</app-link>
+
+            <app-main active-route='${this.route}'>
+                <div route='home'>Home</div>
+                <div route='info'>Info</div>
+                <div route='user'>User ${this.params.id}</div>
+                <div route='not-authorized'>Not Authorized</div>
+                <div route='not-found'>Not Found</div>
+            </app-main>
         `
     }
 }
 
-customElements.define('my-app', MyApp)
+customElements.define('app-link', Link)
+customElements.define('app-main', Main)
+customElements.define('my-app', App)

@@ -42,13 +42,11 @@
     "browser-sync": "^2.26.7",
     "chai": "^4.2.0",
     "coveralls": "^3.0.7",
+    "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "polymer-cli": "^1.9.11",
     "snyk": "^1.244.0"
-  },
-  "dependencies": {
-    "lit-element": "^2.2.1"
   },
   "nyc": {
     "temp-dir": "./node_modules/.cache/alternative-tmp"
