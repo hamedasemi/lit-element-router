@@ -25,7 +25,7 @@ export class Link extends linkMixin(LitElement) {
 
 export class Main extends outletMixin(LitElement) {
     static get styles() {
-        return css `
+        return css`
             :host {
                color: gray;
             }
@@ -33,7 +33,7 @@ export class Main extends outletMixin(LitElement) {
     }
 
     render() {
-        return html `
+        return html`
             <slot></slot>
         `
     }
@@ -53,7 +53,7 @@ class App extends routerMixin(LitElement) {
             name: 'home',
             pattern: '',
             data: { title: 'Home' },
-            callback: (route, params, query) => { console.log('callback', route, params, query) },
+            callback: (route, params, query, data) => { console.log('callback', route, params, query, data) },
             guard: () => { return true }
         }, {
             name: 'info',
