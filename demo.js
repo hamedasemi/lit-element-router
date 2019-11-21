@@ -1,21 +1,21 @@
 // @ts-check
-import { LitElement, html, css } from 'lit-element'
-import { routerMixin, outletMixin, linkMixin } from './lit-element-router'
+import { LitElement, html, css } from "lit-element";
+import { routerMixin, outletMixin, linkMixin } from "./lit-element-router";
 
 export class Link extends linkMixin(LitElement) {
     constructor() {
-        super()
-        this.href = ''
+        super();
+        this.href = "";
     }
     static get properties() {
         return {
             href: { type: String }
-        }
+        };
     }
     render() {
         return html`
-            <a href='${this.href}' @click='${this.linkClick}'><slot></slot></a>
-        `
+            <a href="${this.href}" @click="${this.linkClick}"><slot></slot></a>
+        `;
     }
     linkClick(event) {
         event.preventDefault();
@@ -35,7 +35,7 @@ export class Main extends outletMixin(LitElement) {
     render() {
         return html`
             <slot></slot>
-        `
+        `;
     }
 }
 
@@ -45,22 +45,22 @@ class App extends routerMixin(LitElement) {
         return {
             route: { type: String },
             params: { type: Object }
-        }
+        };
     }
 
     static get routes() {
         return [{
-            name: 'home',
-            pattern: '',
-            data: { title: 'Home' },
-            callback: (route, params, query, data) => { console.log('callback', route, params, query, data) },
+            name: "home",
+            pattern: "",
+            data: { title: "Home" },
+            callback: (route, params, query, data) => { console.log("callback", route, params, query, data) },
             guard: () => { return true }
         }, {
-            name: 'info',
-            pattern: 'info'
+            name: "info",
+            pattern: "info"
         }, {
-            name: 'user',
-            pattern: 'user/:id',
+            name: "user",
+            pattern: "user/:id",
             guard: () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
@@ -69,21 +69,21 @@ class App extends routerMixin(LitElement) {
                 })
             }
         }, {
-            name: 'not-found',
-            pattern: '*'
+            name: "not-found",
+            pattern: "*"
         }];
     }
 
     constructor() {
-        super()
-        this.route = ''
-        this.params = {}
+        super();
+        this.route = "";
+        this.params = {};
     }
 
     router(route, params, query, data) {
-        this.route = route
-        this.params = params
-        console.log(route, params, query, data)
+        this.route = route;
+        this.params = params;
+        console.log(route, params, query, data);
     }
 
     render() {
@@ -95,17 +95,17 @@ class App extends routerMixin(LitElement) {
             <app-link href="/user/16">user/16</app-link>
             <app-link href="/user/16/not/found">user/16/not/found</app-link>
 
-            <app-main active-route='${this.route}'>
-                <div route='home'>Home</div>
-                <div route='info'>Info</div>
-                <div route='user'>User ${this.params.id}</div>
-                <div route='not-authenticated'>Not Authenticated</div>
-                <div route='not-found'>Not Found</div>
+            <app-main active-route="${this.route}">
+                <div route="home">Home</div>
+                <div route="info">Info</div>
+                <div route="user">User ${this.params.id}</div>
+                <div route="not-authenticated">Not Authenticated</div>
+                <div route="not-found">Not Found</div>
             </app-main>
         `
     }
 }
 
-customElements.define('app-link', Link)
-customElements.define('app-main', Main)
-customElements.define('my-app', App)
+customElements.define("app-link", Link);
+customElements.define("app-main", Main);
+customElements.define("my-app", App);
