@@ -14,13 +14,15 @@ npm install lit-element-router --save
 ```
 
 
-# Working Example
-You can find a working example project on StackBlitz https://stackblitz.com/edit/lit-element-router
+# Working Examples
+You can find working example projects on StackBlitz:  
+
+Simple: https://stackblitz.com/edit/lit-element-router  
+Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 
 
 # Usage
-## Add Router
-Add the router to LitElement using the router mixin then register the routes and the router callback.
+Add the __Router__ to LitElement using the router mixin then register the routes and the router callback.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { routerMixin } from 'lit-element-router';
@@ -90,26 +92,24 @@ customElements.define('my-app', App);
 ```
 
 
-## Add Router Outlet
-Add the outlet to LitElement using the outlet mixin.
+Add the __Outlet__ to LitElement using the outlet mixin.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { outletMixin } from 'lit-element-router';
 
 export class Main extends outletMixin(LitElement) {
-    render() {
-      return html`
-        <slot></slot>
-      `;
-    }
+  render() {
+    return html`
+      <slot></slot>
+    `;
+  }
 }
 
 customElements.define('app-main', Main);
 ```
 
 
-## Add Router Link
-Add the link to LitElement using the link mixin then use the navigate method to navigate.
+Add the __Link__ to LitElement using the link mixin then use the navigate method to navigate.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { linkMixin } from 'lit-element-router';
@@ -142,8 +142,6 @@ customElements.define('app-link', Link);
 
 
 # Supported Browsers
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
-
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px"><br> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px"><br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px"><br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px"><br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px"><br>Mobile Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px"><br>Samsung | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px"><br>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px"><br>Electron |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
