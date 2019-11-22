@@ -31,3 +31,5 @@ export const outletMixin = (superclass: typeof LitElement) => class OutletMixin 
 // }
 
 // export declare function routerMixin<T extends typeof HTMLElement>(base: T): T & Router
+
+// type Constructor<T = HTMLElement> = new (...args: any[]) => T;
