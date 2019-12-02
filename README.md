@@ -139,44 +139,7 @@ export class Link extends linkMixin(LitElement) {
 
 customElements.define('app-link', Link);
 ```
-<ul class="list-style-none">
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/broccolini.png" alt="broccolini" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/jonrohan.png" alt="jonrohan" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/muan.png" alt="muan" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/pmarsceill.png" alt="pmarsceill" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/sophshep.png" alt="sophshep" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/cmwinters.png" alt="cmwinters" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2">
-    <img class="width-full avatar" src="https://github.com/jeejkang.png" alt="jeejkang" />
-  </li>
-  <!--
-  -->
-  <li class="d-inline-block col-2 p-2"><img class="width-full avatar" src="https://github.com/mdo.png" alt="mdo" /></li>
-</ul>
+
 
 # Contributors
 <table>
