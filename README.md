@@ -1,17 +1,6 @@
 # LitElement Router
 A LitElement Router (1278 bytes gzip) that uses JavaScript Mixin and RegExp.
 
-[![npm][npm]][npm-url]
-
-[![node][node]][node-url]
-[![deps][deps]][deps-url]
-[![tests][tests]][tests-url]
-[![builds][builds]][builds-url]
-[![builds2][builds2]][builds2-url]
-[![coverage][cover]][cover-url]
-[![licenses][licenses]][licenses-url]
-[![PR's welcome][prs]][prs-url]
-
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/lit-element-router)
@@ -153,22 +142,43 @@ customElements.define('app-link', Link);
 
 
 # Contributors
-<div style="display:flex;flex-wrap:wrap;text-align:center;">
-  <a href="https://github.com/hamedasemi" style="margin:10px;outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/5767593?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Hamed Asemi</a>
-  <a href="https://github.com/lazylazyllama" style="margin:10px;outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/10547444?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Lazy Llama</a>
-  <a href="https://github.com/zzzgit" style="margin:10px;outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1060733?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> zzzgit</a>
-  <a href="https://github.com/ankon" style="margin:10px;outline=:none;color:inherit;" target="_blank"><img src="https://avatars2.githubusercontent.com/u/1210641?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Andreas Kohn</a>
-</div>
-
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/hamedasemi" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/5767593?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Hamed Asemi</a>
+    <td align="center">
+      <a href="https://github.com/lazylazyllama" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/10547444?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Lazy Llama</a>
+    </td>
+    <td align="center"><a href="https://github.com/ankon" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars2.githubusercontent.com/u/1210641?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Andreas Kohn</a></td>
+    <td align="center"><a href="https://github.com/zzzgit" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1060733?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> zzzgit</a></td>
+  </tr>
+</table>
 
 # Supported Browsers
-<div style="display:flex;flex-wrap:wrap;text-align:center;">
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px"><br> Edge</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px"><br>Firefox</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px"><br>Chrome</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px"><br>Safari</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px"><br>Mobile Safari</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px"><br>Samsung</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px"><br>Opera</div>
-  <div style="margin:10px;"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px"><br>Electron</div>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px"><br><b>Edge</b><br>Last 2 versions
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px"><br><b>Firefox</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px"><br><b>Chrome</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px"><br><b>Safari</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px"><br><b>Mobile Safari</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px"><br><b>Samsung</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px"><br><b>Opera</b><br>Last 2 versions
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px"><br><b>Electron</b><br>Last 2 versions
+    </td>
+  </tr>
+</table>
