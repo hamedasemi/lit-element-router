@@ -144,10 +144,10 @@ customElements.define('app-link', Link);
 # Contributors
 <table>
   <tr>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Hamed Asemi</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Lazy Llama</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Andreas Kohn</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> zzzgit</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" style="border-radius:50%;" alt="Hamed Asemi" width="128px" height="128px"><br> Hamed Asemi</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" style="border-radius:50%;" alt="Lazy Llama" width="128px" height="128px"><br> Lazy Llama</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" style="border-radius:50%;" alt="Andreas Kohn" width="128px" height="128px"><br> Andreas Kohn</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" style="border-radius:50%;" alt="zzzgit" width="128px" height="128px"><br> zzzgit</td>
   </tr>
 </table>
 
