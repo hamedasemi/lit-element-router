@@ -143,39 +143,37 @@ customElements.define('app-link', Link);
 
 # Contributors
 <table>
+<tbody>
   <tr>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" style="border-radius:50%;" alt="Hamed Asemi" width="128px" height="128px"><br> Hamed Asemi</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" style="border-radius:50%;" alt="Lazy Llama" width="128px" height="128px"><br> Lazy Llama</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" style="border-radius:50%;" alt="Andreas Kohn" width="128px" height="128px"><br> Andreas Kohn</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" style="border-radius:50%;" alt="zzzgit" width="128px" height="128px"><br> zzzgit</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" alt="Hamed Asemi" width="128"><br>Hamed Asemi</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" alt="Lazy Llama" width="128"><br>Lazy Llama</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" alt="Andreas Kohn" width="128"><br>Andreas Kohn</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" alt="zzzgit" width="128"><br>zzzgit</td>
   </tr>
+  </tbody>
 </table>
+
 
 # Supported Browsers
 <table>
   <tr>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_64x64.png" alt="Edge" width="32px" height="32px"><br><b>Edge</b><br>Last 2 versions
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_64x64.png" alt="Firefox" width="32px" height="32px"><br><b>Firefox</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_64x64.png" alt="Chrome" width="32px" height="32px"><br><b>Chrome</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_64x64.png" alt="Safari" width="32px" height="32px"><br><b>Safari</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_64x64.png" alt="iOS Safari" width="32px" height="32px"><br><b>Mobile Safari</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_64x64.png" alt="Samsung" width="32px" height="32px"><br><b>Samsung</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_64x64.png" alt="Opera" width="32px" height="32px"><br><b>Opera</b><br>Last 2 versions
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_64x64.png" alt="Electron" width="32px" height="32px"><br><b>Electron</b><br>Last 2 versions
-    </td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_64x64.png" alt="Edge" width="32"><br><b>Edge</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_64x64.png" alt="Firefox" width="32"><br><b>Firefox</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_64x64.png" alt="Chrome" width="32"><br><b>Chrome</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_64x64.png" alt="Safari" width="32"><br><b>Safari</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_64x64.png" alt="iOS Safari" width="32"><br><b>Mobile Safari</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_64x64.png" alt="Samsung" width="32"><br><b>Samsung</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_64x64.png" alt="Opera" width="32"><br><b>Opera</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_64x64.png" alt="Electron" width="32"><br><b>Electron</b></td>
+  </tr>
+  <tr>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
+    <td align="center">Last 2 versions</td>
   </tr>
 </table>
