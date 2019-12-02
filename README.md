@@ -139,18 +139,52 @@ export class Link extends linkMixin(LitElement) {
 
 customElements.define('app-link', Link);
 ```
-
+<ul class="list-style-none">
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/broccolini.png" alt="broccolini" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/jonrohan.png" alt="jonrohan" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/muan.png" alt="muan" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/pmarsceill.png" alt="pmarsceill" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/sophshep.png" alt="sophshep" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/cmwinters.png" alt="cmwinters" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2">
+    <img class="width-full avatar" src="https://github.com/jeejkang.png" alt="jeejkang" />
+  </li>
+  <!--
+  -->
+  <li class="d-inline-block col-2 p-2"><img class="width-full avatar" src="https://github.com/mdo.png" alt="mdo" /></li>
+</ul>
 
 # Contributors
 <table>
   <tr>
-    <td align="center">
-      <a href="https://github.com/hamedasemi" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/5767593?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Hamed Asemi</a>
-    <td align="center">
-      <a href="https://github.com/lazylazyllama" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/10547444?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Lazy Llama</a>
-    </td>
-    <td align="center"><a href="https://github.com/ankon" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars2.githubusercontent.com/u/1210641?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> Andreas Kohn</a></td>
-    <td align="center"><a href="https://github.com/zzzgit" style="outline=:none;color:inherit;" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1060733?s=460&v=4" style="border-radius:50%;" alt="Edge" width="120px" height="120px"><br> zzzgit</a></td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Hamed Asemi</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Lazy Llama</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> Andreas Kohn</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" style="border-radius:50%;" alt="Edge" width="128px" height="128px"><br> zzzgit</td>
   </tr>
 </table>
 
@@ -158,27 +192,27 @@ customElements.define('app-link', Link);
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px"><br><b>Edge</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_64x64.png" alt="Edge" width="32px" height="32px"><br><b>Edge</b><br>Last 2 versions
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px"><br><b>Firefox</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_64x64.png" alt="Firefox" width="32px" height="32px"><br><b>Firefox</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px"><br><b>Chrome</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_64x64.png" alt="Chrome" width="32px" height="32px"><br><b>Chrome</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px"><br><b>Safari</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_64x64.png" alt="Safari" width="32px" height="32px"><br><b>Safari</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px"><br><b>Mobile Safari</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_64x64.png" alt="iOS Safari" width="32px" height="32px"><br><b>Mobile Safari</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px"><br><b>Samsung</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_64x64.png" alt="Samsung" width="32px" height="32px"><br><b>Samsung</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px"><br><b>Opera</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_64x64.png" alt="Opera" width="32px" height="32px"><br><b>Opera</b><br>Last 2 versions
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px"><br><b>Electron</b><br>Last 2 versions
+      <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_64x64.png" alt="Electron" width="32px" height="32px"><br><b>Electron</b><br>Last 2 versions
     </td>
   </tr>
 </table>
