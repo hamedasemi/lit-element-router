@@ -21,6 +21,7 @@
     "routing",
     "lit-element",
     "lit-element-router",
+    "authentication",
     "regexp",
     "mixin",
     "mixins"
