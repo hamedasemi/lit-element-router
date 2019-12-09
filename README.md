@@ -21,7 +21,7 @@ Simple: https://stackblitz.com/edit/lit-element-router
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 Advanced  (todo): https://stackblitz.com/edit/lit-element-router-advanced  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
-Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi-router  
+Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi  
 All In One: https://stackblitz.com/edit/lit-element-router-all-in-one  
 
 
