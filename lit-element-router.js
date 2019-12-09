@@ -85,16 +85,24 @@ export let outletMixin = (superclass) => class extends superclass {
 
     connectedCallback(...args) {
         super.connectedCallback(...args);
-        
-        this.outlet();
+
+        setImmediate(() => {
+            this.outlet();
+        })
     }
 
     outlet() {
         Array.from(this.querySelectorAll(`[route]`)).map((active) => {
             active.style.display = "none";
         });
+        Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map((active) => {
+            active.style.display = "none";
+        });
         if (this.activeRoute) {
             Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map((active) => {
+                active.style.display = null;
+            });
+            Array.from(this.shadowRoot.querySelectorAll(`[route~=${this.activeRoute}]`)).map((active) => {
                 active.style.display = null;
             });
         }
