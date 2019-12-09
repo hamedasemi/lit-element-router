@@ -19,6 +19,10 @@ You can find working example projects on StackBlitz:
 
 Simple: https://stackblitz.com/edit/lit-element-router  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
+Advanced  (todo): https://stackblitz.com/edit/lit-element-router-advanced  
+Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
+Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi-router  
+All In One (todo): https://stackblitz.com/edit/lit-element-router-all-in-one  
 
 
 # Usage
@@ -140,20 +144,6 @@ export class Link extends linkMixin(LitElement) {
 customElements.define('app-link', Link);
 ```
 
-
-# Contributors
-<table>
-<tbody>
-  <tr>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" alt="Hamed Asemi" width="128"><br>Hamed Asemi</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" alt="Lazy Llama" width="128"><br>Lazy Llama</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" alt="Andreas Kohn" width="128"><br>Andreas Kohn</td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" alt="zzzgit" width="128"><br>zzzgit</td>
-  </tr>
-  </tbody>
-</table>
-
-
 # Supported Browsers
 <table>
   <tr>
@@ -177,3 +167,19 @@ customElements.define('app-link', Link);
     <td align="center">Last 2 versions</td>
   </tr>
 </table>
+
+# Contributors
+<table>
+<tbody>
+  <tr>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/5767593?s=256" alt="Hamed Asemi" width="128"><br>Hamed Asemi</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" alt="Lazy Llama" width="128"><br>Lazy Llama</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" alt="Andreas Kohn" width="128"><br>Andreas Kohn</td>
+    <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" alt="zzzgit" width="128"><br>zzzgit</td>
+  </tr>
+  </tbody>
+</table>
+
+
+# Contribution
+Add contribution guide (todo)
