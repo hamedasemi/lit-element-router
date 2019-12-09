@@ -20,7 +20,6 @@ You can find working example projects on StackBlitz:
 Simple: https://stackblitz.com/edit/lit-element-router  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 Advanced  (todo): https://stackblitz.com/edit/lit-element-router-advanced  
-Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi  
 All In One: https://stackblitz.com/edit/lit-element-router-all-in-one  
 
@@ -181,5 +180,33 @@ customElements.define('app-link', Link);
 </table>
 
 
-# Contribution
-Add contribution guide (todo)
+# Contributions
+__Clone__ these two repositories and put them side by side in a common folder:
+```sh
+git clone git@github.com:hamedasemi/lit-element-router.git
+```
+```sh
+git clone git@github.com:hamedasemi/lit-element-router-test.git
+```
+
+Navigate to both lit-element-router and lit-element-router-test directories and __install__ dependencies
+```sh
+npm install
+```
+
+
+Navigate to lit-element-router-test and __run__ the webpack dev __server__
+```sh
+npm run serve
+```
+
+Start the development on lit-element-router, __observe__ and __test__ changes right in the lit-element-router-test __live__
+
+Run the __test__ locally (only necessary if you are developing the utility)
+```sh
+npm test
+```
+
+Add your name and picture to the __contributors' list__ at lit-element-router repository https://github.com/hamedasemi/lit-element-router#contributors
+
+Create a __pull request__ of your changes on both repositories lit-element-router and lit-element-router-test
