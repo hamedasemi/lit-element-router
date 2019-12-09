@@ -22,7 +22,7 @@ Authentication: https://stackblitz.com/edit/lit-element-router-authentication
 Advanced  (todo): https://stackblitz.com/edit/lit-element-router-advanced  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi-router  
-All In One (todo): https://stackblitz.com/edit/lit-element-router-all-in-one  
+All In One: https://stackblitz.com/edit/lit-element-router-all-in-one  
 
 
 # Usage
