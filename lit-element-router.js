@@ -80,7 +80,7 @@ export let outletMixin = (superclass) => class extends superclass {
     attributeChangedCallback(...args) {
         super.attributeChangedCallback(...args);
 
-        args[0] === 'active-route' && this.outlet();
+        args.includes('active-route') && this.outlet();
     }
 
     connectedCallback(...args) {
