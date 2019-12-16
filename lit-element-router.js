@@ -5,7 +5,7 @@ export let routerMixin = (superclass) => class extends superclass {
         return {
             route: { type: String, reflect: true, attribute: 'route' },
             canceled: { type: Boolean }
-        }
+        };
     }
 
     connectedCallback(...args) {
@@ -74,7 +74,7 @@ export let outletMixin = (superclass) => class extends superclass {
     static get properties() {
         return {
             activeRoute: { type: String, reflect: true, attribute: 'active-route' }
-        }
+        };
     }
 
     attributeChangedCallback(...args) {
@@ -88,7 +88,7 @@ export let outletMixin = (superclass) => class extends superclass {
 
         setImmediate(() => {
             this.outlet();
-        })
+        });
     }
 
     outlet() {
