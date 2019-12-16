@@ -7,6 +7,7 @@
     "report": "npm test && nyc report --reporter=text-lcov | COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls",
     "prerelease": "npm version prerelease --preid=rc",
     "premajor": "npm version premajor --preid=rc",
+    "major": "npm version major",
     "risk": "snyk monitor"
   },
   "repository": {
