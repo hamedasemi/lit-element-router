@@ -112,12 +112,12 @@ customElements.define('app-main', Main);
 ```
 
 
-Add the __Link__ to LitElement using the link mixin then use the navigate method to navigate.
+Add the __Navigate__ to LitElement using the navigate mixin then use the navigate method to navigate.
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { linkMixin } from 'lit-element-router';
+import { navigateMixin } from 'lit-element-router';
 
-export class Link extends linkMixin(LitElement) {
+export class Link extends navigateMixin(LitElement) {
     static get properties() {
         return {
             href: { type: String }
