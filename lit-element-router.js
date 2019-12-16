@@ -62,7 +62,7 @@ export let routerMixin = (superclass) => class extends superclass {
     }
 };
 
-export let linkMixin = (superclass) => class extends superclass {
+export let navigateMixin = (superclass) => class extends superclass {
     navigate(href) {
         window.history.pushState({}, null, href);
         window.dispatchEvent(new CustomEvent('route'));

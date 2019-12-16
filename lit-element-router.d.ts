@@ -16,7 +16,7 @@ export const routerMixin = (superclass: typeof LitElement) => class RouterMixin 
     private routing(routes: Routes, callback: (route: string, params: object, query: object, data: object) => void): void;
 }
 
-export const linkMixin = (superclass: typeof LitElement) => class LinkMixin extends superclass {
+export const navigateMixin = (superclass: typeof LitElement) => class LinkMixin extends superclass {
     protected navigate(href: string): void;
 }
 
