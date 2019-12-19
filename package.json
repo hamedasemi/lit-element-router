@@ -1,6 +1,6 @@
 {
   "name": "lit-element-router",
-  "version": "2.0.0-rc.12",
+  "version": "2.0.0-rc.13",
   "main": "lit-element-router.js",
   "scripts": {
     "test": "nyc mocha --require @babel/register './{,!(node_modules)/**/}*.test.js' --exit",
