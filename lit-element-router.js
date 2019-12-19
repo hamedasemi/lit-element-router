@@ -80,7 +80,7 @@ export let outletMixin = (superclass) => class extends superclass {
     attributeChangedCallback(...args) {
         super.attributeChangedCallback(...args);
 
-        args.includes('active-route') && this.outlet();
+        args.some(arg => arg === 'active-route') && this.outlet();
     }
 
     connectedCallback(...args) {
@@ -100,10 +100,10 @@ export let outletMixin = (superclass) => class extends superclass {
         });
         if (this.activeRoute) {
             Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map((active) => {
-                active.style.display = null;
+                active.style.display = "";
             });
             Array.from(this.shadowRoot.querySelectorAll(`[route~=${this.activeRoute}]`)).map((active) => {
-                active.style.display = null;
+                active.style.display = "";
             });
         }
     }
