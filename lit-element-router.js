@@ -18,8 +18,10 @@ export let routerMixin = (superclass) => class extends superclass {
     connectedCallback(...args) {
         super.connectedCallback(...args);
 
+        // @ts-ignore
         this.routing(this.constructor.routes, (...args) => this.router(...args));
         window.addEventListener('route', () => {
+            // @ts-ignore
             this.routing(this.constructor.routes, (...args) => this.router(...args));
         })
 
