@@ -30,6 +30,11 @@ export let routerMixin = (superclass) => class extends superclass {
         }
     }
 
+    routed(name, params, query, data, callback, localCallback) {
+        localCallback && localCallback(name, params, query, data);
+        callback(name, params, query, data);
+    }
+
     routing(routes, callback) {
         this.canceled = true;
 
@@ -43,30 +48,50 @@ export let routerMixin = (superclass) => class extends superclass {
         if (activeRoute) {
             activeRoute.params = parseParams(activeRoute.pattern, uri);
             activeRoute.data = activeRoute.data || {};
-            if (activeRoute.guard && typeof activeRoute.guard === 'function') {
+            if (activeRoute.authentication && activeRoute.authentication.authenticate && typeof activeRoute.authentication.authenticate === 'function') {
                 this.canceled = false;
-                Promise.resolve(activeRoute.guard())
-                    .then((allowed) => {
+                Promise.resolve(activeRoute.authentication.authenticate())
+                    .then((authenticated) => {
                         if (!this.canceled) {
-                            if (allowed) {
-                                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
-                                callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
+                            if (authenticated) {
+                                if (activeRoute.authorization && activeRoute.authorization.authorize && typeof activeRoute.authorization.authorize === 'function') {
+                                    this.canceled = false;
+                                    Promise.resolve(activeRoute.authorization.authorize())
+                                        .then((authorizatied) => {
+                                            if (!this.canceled) {
+                                                if (authorizatied) {
+                                                    this.routed(activeRoute.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
+                                                } else {
+                                                    this.routed(activeRoute.authorization.unauthorized.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
+                                                }
+                                            }
+                                        })
+                                } else {
+                                    this.routed(activeRoute.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
+                                }
                             } else {
-                                activeRoute.callback && activeRoute.callback('not-authenticated', activeRoute.params, query, activeRoute.data);
-                                callback('not-authenticated', activeRoute.params, query, activeRoute.data);
+                                this.routed(activeRoute.authentication.unauthenticated.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
+                            }
+                        }
+                    })
+            } else if (activeRoute.authorization && activeRoute.authorization.authorize && typeof activeRoute.authorization.authorize === 'function') {
+                this.canceled = false;
+                Promise.resolve(activeRoute.authorization.authorize())
+                    .then((authorizatied) => {
+                        if (!this.canceled) {
+                            if (authorizatied) {
+                                this.routed(activeRoute.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
+                            } else {
+                                this.routed(activeRoute.authorization.unauthorized.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
                             }
                         }
                     })
             } else {
-                activeRoute.callback && activeRoute.callback(activeRoute.name, activeRoute.params, query, activeRoute.data)
-                callback(activeRoute.name, activeRoute.params, query, activeRoute.data);
+                this.routed(activeRoute.name, activeRoute.params, query, activeRoute.data, callback, activeRoute.callback);
             }
         } else if (notFoundRoute) {
             notFoundRoute.data = notFoundRoute.data || {};
-            notFoundRoute.callback && notFoundRoute.callback(notFoundRoute.name, {}, query, notFoundRoute.data)
-            callback(notFoundRoute.name, {}, query, notFoundRoute.data);
-        } else {
-            callback('not-found', {}, {}, {});
+            this.routed(notFoundRoute.name, {}, query, notFoundRoute.data, callback, notFoundRoute.callback);
         }
     }
 };
