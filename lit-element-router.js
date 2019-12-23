@@ -8,6 +8,13 @@ export let routerMixin = (superclass) => class extends superclass {
         };
     }
 
+    constructor(...args) {
+        super(...args);
+
+        this.route = '';
+        this.canceled = false;
+    }
+
     connectedCallback(...args) {
         super.connectedCallback(...args);
 
