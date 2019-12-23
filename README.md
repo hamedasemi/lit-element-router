@@ -19,7 +19,8 @@ You can find working example projects on StackBlitz:
 
 Simple: https://stackblitz.com/edit/lit-element-router  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
-Advanced  (todo): https://stackblitz.com/edit/lit-element-router-advanced  
+Authentication and Authorization (todo): https://stackblitz.com/edit/lit-element-router-authentication-and-authorization  
+Advanced (todo): https://stackblitz.com/edit/lit-element-router-advanced  
 Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi  
 All In One: https://stackblitz.com/edit/lit-element-router-all-in-one  
 
