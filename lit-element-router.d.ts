@@ -44,6 +44,18 @@ export const outletMixin = (superclass: typeof LitElement) => class OutletMixin 
     private outlet(): void;
 }
 
+
+// type Constructor<T = HTMLElement> = new (...args: any[]) => T;
+// export declare function routerMixin<TBase extends typeof HTMLElement>(Base: TBase) {
+//     return class RouterMixin extends Base {
+//         new(...args: any[]): {
+//         //     routes(): Routes;
+//         };
+//         // public static routes(): Routes;
+//     }
+// }
+
+
 // export declare class Router {
 //     static routes: Routes;
 //     protected router(route?: string, params?: object, query?: object, data?: object): void;
