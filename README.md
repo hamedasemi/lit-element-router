@@ -1,5 +1,5 @@
 # LitElement Router
-A LitElement Router (1278 bytes gzip) that uses JavaScript Mixin and RegExp.
+A LitElement Router (1278 bytes gzip) that uses JavaScript Mixin, Decorators and RegExp.
 
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
 [![npm version](https://badge.fury.io/js/lit-element-router.svg)](https://badge.fury.io/js/lit-element-router)
@@ -26,16 +26,18 @@ All In One: https://stackblitz.com/edit/lit-element-router-all-in-one
 
 
 # Usage
-Add the __Router__ to LitElement using the router mixin then register the routes and the router callback.
+Add the __Router__ to LitElement using the router method then register the routes and the router callback.
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { routerMixin } from 'lit-element-router';
+import { router } from 'lit-element-router';
 
 import './app-link';
 import './app-main';
 
-class App extends routerMixin(LitElement) {
-
+@router
+class App extends LitElement {
+// OR
+class App extends router(LitElement) {
   static get properties() {
     return {
       route: { type: String },
@@ -96,12 +98,15 @@ customElements.define('my-app', App);
 ```
 
 
-Add the __Outlet__ to LitElement using the outlet mixin.
+Add the __Outlet__ to LitElement using the outlet method.
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { outletMixin } from 'lit-element-router';
+import { outlet } from 'lit-element-router';
 
-export class Main extends outletMixin(LitElement) {
+@outlet
+class Main extends LitElement {
+// OR
+class Main extends outlet(LitElement) {
   render() {
     return html`
       <slot></slot>
@@ -113,12 +118,15 @@ customElements.define('app-main', Main);
 ```
 
 
-Add the __Navigate__ to LitElement using the navigate mixin then use the navigate method to navigate.
+Add the __Navigator__ to LitElement using the navigator method then use the navigate method to navigate.
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { navigateMixin } from 'lit-element-router';
+import { navigator } from 'lit-element-router';
 
-export class Link extends navigateMixin(LitElement) {
+@navigator
+class Link extends LitElement {
+// OR
+class Link extends navigator(LitElement) {
     static get properties() {
         return {
             href: { type: String }
