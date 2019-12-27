@@ -23,7 +23,10 @@
     "lit-element",
     "lit-element-router",
     "authentication",
+    "athorization",
     "regexp",
+    "decorator",
+    "decorators",
     "mixin",
     "mixins"
   ],
