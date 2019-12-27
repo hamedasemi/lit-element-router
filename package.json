@@ -23,7 +23,7 @@
     "lit-element",
     "lit-element-router",
     "authentication",
-    "athorization",
+    "authorization",
     "regexp",
     "decorator",
     "decorators",
