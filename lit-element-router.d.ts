@@ -52,6 +52,15 @@ declare class Outlet {
 
 export declare function outlet<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
 
+// export declare function router(): <I extends Constructor<HTMLElement>>(base: I) => {
+//     new(...args: any[]): {
+//         connectedCallback(...args: any[]): void;
+//         routed(name: any, params: any, query: any, data: any, callback: any, localCallback: any): void;
+//         routing(routes: any, callback: any): void;
+//     };
+//     readonly routes: Routes;
+// } & I;
+
 // export function router<TBase extends typeof HTMLElement>(base: TBase) {
 //     return class Router extends base<TBase> {
 //         static routes: Routes;
@@ -71,15 +80,6 @@ export declare function outlet<TBase extends Constructor<HTMLElement>>(base: TBa
 //         };
 //     }
 // }
-
-// export declare function router(): <I extends Constructor<HTMLElement>>(base: I) => {
-//     new(...args: any[]): {
-//         connectedCallback(...args: any[]): void;
-//         routed(name: any, params: any, query: any, data: any, callback: any, localCallback: any): void;
-//         routing(routes: any, callback: any): void;
-//     };
-//     readonly routes: Routes;
-// } & I;
 
 // export declare type Constructor<T = HTMLElement> = {
 //     new (...args: any[]): T;
