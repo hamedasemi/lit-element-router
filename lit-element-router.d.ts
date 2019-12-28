@@ -29,17 +29,40 @@ interface Route {
 
 interface Routes extends Array<Route> { }
 
-export function router<TBase extends typeof HTMLElement>(base: TBase) {
-    return class Router extends base<TBase> {
-        static routes: Routes;
-        protected router(route?: string, params?: object, query?: object, data?: object): void;
-        private routed(name?: string, params?: object, query?: object, data?: object, callback?: (route?: string, params?: object, query?: object, data?: object) => void, localCallback?: (route?: string, params?: object, query?: object, data?: object) => void): void;
-        private routing(routes: Routes, callback: (route: string, params: object, query: object, data: object) => void): void;
-    }
+export declare type Constructor<T = HTMLElement> = { new(...args: any[]): T; };
+
+declare class Router {
+    static routes: Routes;
+    protected router(route?: string, params?: object, query?: object, data?: object): void;
+    private routed(name?: string, params?: object, query?: object, data?: object, callback?: (route?: string, params?: object, query?: object, data?: object) => void, localCallback?: (route?: string, params?: object, query?: object, data?: object) => void): void;
+    private routing(routes: Routes, callback: (route: string, params: object, query: object, data: object) => void): void;
 }
 
+export declare function router<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+
+declare class Navigator {
+    protected navigate(href: string): void;
+}
+
+export declare function navigator<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+
+declare class Outlet {
+    private outlet(): void;
+}
+
+export declare function outlet<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+
+// export function router<TBase extends typeof HTMLElement>(base: TBase) {
+//     return class Router extends base<TBase> {
+//         static routes: Routes;
+//         protected router(route?: string, params?: object, query?: object, data?: object): void;
+//         private routed(name?: string, params?: object, query?: object, data?: object, callback?: (route?: string, params?: object, query?: object, data?: object) => void, localCallback?: (route?: string, params?: object, query?: object, data?: object) => void): void;
+//         private routing(routes: Routes, callback: (route: string, params: object, query: object, data: object) => void): void;
+//     }
+// }
+
 // export function router() {
-//     return function <TBase extends typeof HTMLElement>(base: TBase) {
+//     return function <TBase extends { new(...args: any[]): {} }>(base: TBase) {
 //         return class Router extends base {
 //             static routes: Routes;
 //             protected router(route?: string, params?: object, query?: object, data?: object): void;
@@ -49,11 +72,29 @@ export function router<TBase extends typeof HTMLElement>(base: TBase) {
 //     }
 // }
 
-export function navigator<TBase extends typeof HTMLElement>(base: TBase) {
-    return class Navigator extends base<TBase> {
-        protected navigate(href: string): void;
-    }
-}
+// export declare function router(): <I extends Constructor<HTMLElement>>(base: I) => {
+//     new(...args: any[]): {
+//         connectedCallback(...args: any[]): void;
+//         routed(name: any, params: any, query: any, data: any, callback: any, localCallback: any): void;
+//         routing(routes: any, callback: any): void;
+//     };
+//     readonly routes: Routes;
+// } & I;
+
+// export declare type Constructor<T = HTMLElement> = {
+//     new (...args: any[]): T;
+// };
+// export declare function router(): <TBase extends Constructor<HTMLElement>>(base: TBase) => {
+//     new (...args: any[]): {
+//         readonly routes: Routes;
+//     };
+// } & TBase;
+
+// export declare function router<TBase extends Constructor<HTMLElement>>(base: TBase): {
+//     new(...args: any[]): {
+//         readonly routes: Routes;
+//     };
+// } & TBase;
 
 // type Constructor<T = HTMLElement> = new (...args: any[]) => T;
 // export declare function navigator<TBase extends typeof HTMLElement>(Base: TBase) {
@@ -63,8 +104,6 @@ export function navigator<TBase extends typeof HTMLElement>(base: TBase) {
 //         };
 //         protected navigate(href: string): void;    }
 // }
-
-
 
 // import { LitElement } from "lit-element";
 // declare type Constructor = new (...args: any[]) => HTMLElement;
@@ -76,24 +115,6 @@ export function navigator<TBase extends typeof HTMLElement>(base: TBase) {
 // }
 // declare type ReturnConstructor = new (...args: any[]) => HTMLElement & BeforeRenderMixin;
 // export function navigator<B extends Constructor>(Base: B): B & ReturnConstructor;
-
-
-
-// class Navigator {
-//     new(...args: any[]): {
-//         navigate(href: string): void;
-//     };
-//     protected navigate(href: string): void;
-// }
-
-// export declare function navigator<T extends typeof HTMLElement>(base: T): T & Navigator
-
-
-export function outlet<TBase extends typeof HTMLElement>(base: TBase) {
-    return class Outlet extends base<TBase> {
-        private outlet(): void;
-    }
-}
 
 // export const router = (superclass: typeof LitElement) => class Router extends superclass {
 //     static routes: Routes;
@@ -110,7 +131,6 @@ export function outlet<TBase extends typeof HTMLElement>(base: TBase) {
 //     private outlet(): void;
 // }
 
-
 // type Constructor<T = HTMLElement> = new (...args: any[]) => T;
 // export declare function routerMixin<TBase extends typeof HTMLElement>(Base: TBase) {
 //     return class RouterMixin extends Base {
@@ -120,7 +140,6 @@ export function outlet<TBase extends typeof HTMLElement>(base: TBase) {
 //         // public static routes(): Routes;
 //     }
 // }
-
 
 // export declare class Router {
 //     static routes: Routes;
