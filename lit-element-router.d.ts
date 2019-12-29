@@ -38,19 +38,19 @@ declare class Router {
     private routing(routes: Routes, callback: (route: string, params: object, query: object, data: object) => void): void;
 }
 
-export declare function router<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+export declare function router<TBase extends Constructor<HTMLElement>>(base: TBase): Constructor<Router> & TBase;
 
 declare class Navigator {
     protected navigate(href: string): void;
 }
 
-export declare function navigator<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+export declare function navigator<TBase extends Constructor<HTMLElement>>(base: TBase): Constructor<Navigator> & TBase;
 
 declare class Outlet {
     private outlet(): void;
 }
 
-export declare function outlet<TBase extends Constructor<HTMLElement>>(base: TBase): Router & TBase;
+export declare function outlet<TBase extends Constructor<HTMLElement>>(base: TBase): Constructor<Outlet> & TBase;
 
 // export declare function router(): <I extends Constructor<HTMLElement>>(base: I) => {
 //     new(...args: any[]): {
