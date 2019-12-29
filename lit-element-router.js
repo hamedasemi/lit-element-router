@@ -51,13 +51,13 @@ export function router(base) {
                 activeRoute.data = activeRoute.data || {};
                 if (activeRoute.authentication && activeRoute.authentication.authenticate && typeof activeRoute.authentication.authenticate === 'function') {
                     this.canceled = false;
-                    Promise.resolve(activeRoute.authentication.authenticate())
+                    Promise.resolve(activeRoute.authentication.authenticate.bind(this).call())
                         .then((authenticated) => {
                             if (!this.canceled) {
                                 if (authenticated) {
                                     if (activeRoute.authorization && activeRoute.authorization.authorize && typeof activeRoute.authorization.authorize === 'function') {
                                         this.canceled = false;
-                                        Promise.resolve(activeRoute.authorization.authorize())
+                                        Promise.resolve(activeRoute.authorization.authorize.bind(this).call())
                                             .then((authorizatied) => {
                                                 if (!this.canceled) {
                                                     if (authorizatied) {
@@ -77,7 +77,7 @@ export function router(base) {
                         })
                 } else if (activeRoute.authorization && activeRoute.authorization.authorize && typeof activeRoute.authorization.authorize === 'function') {
                     this.canceled = false;
-                    Promise.resolve(activeRoute.authorization.authorize())
+                    Promise.resolve(activeRoute.authorization.authorize.bind(this).call())
                         .then((authorizatied) => {
                             if (!this.canceled) {
                                 if (authorizatied) {
