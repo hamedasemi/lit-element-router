@@ -19,8 +19,10 @@ export function router(base) {
         connectedCallback(...args) {
             super.connectedCallback(...args);
 
+            // @ts-ignore
             this.routing(this.constructor.routes, (...args) => this.router(...args));
             window.addEventListener('route', () => {
+                // @ts-ignore
                 this.routing(this.constructor.routes, (...args) => this.router(...args));
             })
 
