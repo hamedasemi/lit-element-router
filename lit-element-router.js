@@ -125,7 +125,7 @@ export function outlet(base) {
         connectedCallback(...args) {
             super.connectedCallback(...args);
 
-            setImmediate(() => {
+            setTimeout(() => {
                 this.outlet();
             });
         }
