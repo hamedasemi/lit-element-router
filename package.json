@@ -8,6 +8,7 @@
     "prerelease": "npm version prerelease --preid=rc",
     "premajor": "npm version premajor --preid=rc",
     "major": "npm version major",
+    "patch": "npm version patch",
     "risk": "snyk monitor"
   },
   "repository": {
