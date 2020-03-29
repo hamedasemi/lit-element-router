@@ -184,6 +184,7 @@ customElements.define('app-link', Link);
     <td align="center"><img src="https://avatars0.githubusercontent.com/u/10547444?s=256" alt="Lazy Llama" width="128"><br>Lazy Llama</td>
     <td align="center"><img src="https://avatars0.githubusercontent.com/u/1210641?s=256" alt="Andreas Kohn" width="128"><br>Andreas Kohn</td>
     <td align="center"><img src="https://avatars0.githubusercontent.com/u/1060733?s=256" alt="zzzgit" width="128"><br>zzzgit</td>
+    <td align="center"><img src="https://avatars1.githubusercontent.com/u/3071451?s=256" alt="truongminh" width="128"><br>Nguyễn Trường Minh</td>
   </tr>
   </tbody>
 </table>
