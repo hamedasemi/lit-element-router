@@ -45,7 +45,7 @@
     "coveralls": "^3.0.7",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
-    "snyk": "^1.244.0"
+    "snyk": "^1.305.0"
   },
   "nyc": {
     "temp-dir": "./node_modules/.cache/alternative-tmp"
