@@ -1,5 +1,4 @@
 // import { LitElement } from 'lit-element';
-import { Observable } from 'rxjs';
 
 interface Unauthenticated {
     name: string;
@@ -10,12 +9,12 @@ interface Unauthorized {
 }
 
 interface Authentication {
-    authenticate(): Observable<boolean> | Promise<boolean> | boolean;
+    authenticate(): Promise<boolean> | boolean;
     unauthenticated: Unauthenticated;
 }
 
 interface Authorization {
-    authorize(): Observable<boolean> | Promise<boolean> | boolean;
+    authorize(): Promise<boolean> | boolean;
     unauthorized: Unauthorized;
 }
 
