@@ -1,4 +1,5 @@
 // import { LitElement } from 'lit-element';
+import { Observable } from 'rxjs';
 
 interface Unauthenticated {
     name: string;
