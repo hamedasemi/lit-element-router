@@ -39,8 +39,9 @@ export function router(base) {
         routing(routes, callback) {
             this.canceled = true;
 
-            const uri = decodeURI(window.location.pathname);
-            const querystring = decodeURI(window.location.search);
+            // const uri = decodeURIComponent(window.location.pathname);
+            const uri = window.location.pathname
+            const querystring = decodeURIComponent(window.location.search);
 
             let notFoundRoute = routes.filter(route => route.pattern === '*')[0];
             let activeRoute = routes.filter(route => route.pattern !== '*' && testRoute(uri, route.pattern))[0];
