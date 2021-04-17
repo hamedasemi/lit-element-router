@@ -4,7 +4,7 @@ description: Test and publish to npm.
 executors:
   node:
     docker:
-      - image: circleci/node:10.0
+      - image: circleci/node:10.24
       
 commands:
   install:
