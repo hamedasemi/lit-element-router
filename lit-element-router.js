@@ -209,20 +209,24 @@ export function outlet(base) {
       Array.from(this.querySelectorAll(`[route]`)).map((active) => {
         active.style.display = "none";
       });
-      Array.from(this.shadowRoot?.querySelectorAll(`[route]`)).map((active) => {
-        active.style.display = "none";
-      });
+      if (this.shadowRoot) {
+        Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map((active) => {
+          active.style.display = "none";
+        });
+      }
       if (this.activeRoute) {
         Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map(
           (active) => {
             active.style.display = "";
           }
         );
-        Array.from(
-          this.shadowRoot?.querySelectorAll(`[route~=${this.activeRoute}]`)
-        ).map((active) => {
-          active.style.display = "";
-        });
+        if (this.shadowRoot) {
+          Array.from(
+            this.shadowRoot.querySelectorAll(`[route~=${this.activeRoute}]`)
+          ).map((active) => {
+            active.style.display = "";
+          });
+        }
       }
     }
   };
