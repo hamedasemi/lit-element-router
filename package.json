@@ -38,15 +38,15 @@
   },
   "homepage": "https://github.com/hamedasemi/lit-element-router#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.0",
-    "@babel/register": "^7.13.16",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/register": "^7.14.5",
     "asserts": "^4.0.2",
     "chai": "^4.3.4",
-    "coveralls": "^3.1.0",
+    "coveralls": "^3.1.1",
     "mocha": "^9.0.0",
     "nyc": "^15.1.0",
-    "snyk": "^1.574.0"
+    "snyk": "^1.657.0"
   },
   "nyc": {
     "temp-dir": "./node_modules/.cache/alternative-tmp"
