@@ -118,8 +118,8 @@ export function outlet(base) {
 
         attributeChangedCallback(...args) {
             super.attributeChangedCallback(...args);
-
-            args.some(arg => arg === 'active-route') && this.outlet();
+            setTimeout(() => {
+                args.some(arg => arg === 'active-route') && this.outlet()});
         }
 
         connectedCallback(...args) {
