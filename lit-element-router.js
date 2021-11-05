@@ -187,7 +187,7 @@ export function outlet(base) {
   return class extends base {
     static get properties() {
       return {
-        activeRoute: { type: String, reflect: true, attribute: "active-route" },
+        activeRoute: { type: String, reflect: true, attribute: "active-route" }
       };
     }
 
@@ -205,28 +205,55 @@ export function outlet(base) {
       });
     }
 
+    moveChildNodes(node, tagName = "template") {
+      const template = document.createElement(tagName);
+      for (const attr of node.attributes) {
+        template.setAttribute(attr.name, attr.value);
+      }
+      while (node.childNodes.length > 0) {
+        template.appendChild(node.childNodes[0]);
+      }
+      return template;
+    }
+
     outlet() {
+      const nodeCache = {};
       Array.from(this.querySelectorAll(`[route]`)).map((active) => {
-        active.style.display = "none";
+        const name = active.getAttribute("route");
+        const template = nodeCache[name] || this.moveChildNodes(active);
+        nodeCache[name] = template;
+        // replace route by template
+        active.replaceWith(template);
       });
       if (this.shadowRoot) {
         Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map(
           (active) => {
-            active.style.display = "none";
+            const name = active.getAttribute("route");
+            const template = nodeCache[name] || this.moveChildNodes(active);
+            nodeCache[name] = template;
+
+            // replace route by template
+            active.replaceWith(template);
           }
         );
       }
       if (this.activeRoute) {
         Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map(
           (active) => {
-            active.style.display = "";
+            const name = active.getAttribute("route");
+            const template = nodeCache[name];
+            const dom = this.moveChildNodes(template, "div");
+            active.replaceWith(dom);
           }
         );
         if (this.shadowRoot) {
           Array.from(
             this.shadowRoot.querySelectorAll(`[route~=${this.activeRoute}]`)
           ).map((active) => {
-            active.style.display = "";
+            const name = active.getAttribute("route");
+            const template = nodeCache[name];
+            const dom = this.moveChildNodes(template, "div");
+            active.replaceWith(dom);
           });
         }
       }
