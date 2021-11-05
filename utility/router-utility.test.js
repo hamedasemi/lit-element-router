@@ -31,12 +31,6 @@ suite('parseParams()', () => {
     })
 })
 
-suite('patternToRegExp()', () => {
-    test('should return /\\// when the input is /', () => {
-        expect(patternToRegExp('user/:id')).to.deep.equal(/^(|\/)user\/([\wÀ-ÖØ-öø-ÿ-]+)(|\/)$/);
-    })
-})
-
 
 suite('testRoute()', () => {
     test('"" ""', () => {
@@ -51,7 +45,7 @@ suite('testRoute()', () => {
     test('/ /', () => {
         expect(testRoute('/', '/')).to.be.true;
     })
-    
+
 
     test('home home', () => {
         expect(testRoute('home', 'home')).to.be.true;
@@ -65,7 +59,7 @@ suite('testRoute()', () => {
     test('home/ home', () => {
         expect(testRoute('home/', 'home')).to.be.true;
     })
-    
+
     test('user/12 user/:id', () => {
         expect(testRoute('user/12', 'user/:id')).to.be.true;
     })
