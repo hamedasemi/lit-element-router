@@ -1,6 +1,5 @@
 import { LitElement, css, html } from "lit";
 import { RouterLink, RouterView, router } from "../lit-element-router.js";
-import "./test.js";
 
 export class MyElement extends router(LitElement) {
   constructor() {
