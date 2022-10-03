@@ -7,23 +7,12 @@ export class RouterLink extends navigator(LitElement) {
       href: { type: String },
     };
   }
-  static get styles() {
-    return css`
-      a {
-        margin: 5px;
-      }
-    `;
-  }
   constructor() {
     super();
     this.href = "";
   }
   render() {
-    return html`
-      <a href="${this.href}" @click="${this.linkClick}">
-        <slot></slot>
-      </a>
-    `;
+    return html` <slot @click="${this.linkClick}"></slot> `;
   }
   linkClick(event) {
     event.preventDefault();
