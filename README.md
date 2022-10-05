@@ -1,4 +1,5 @@
 # LitElement Router
+
 A LitElement Router (1278 bytes gzip) that uses JavaScript Mixin, Decorators and RegExp.
 
 [![Coverage Status](https://coveralls.io/repos/github/hamedasemi/lit-element-router/badge.svg?branch=mainline)](https://coveralls.io/github/hamedasemi/lit-element-router?branch=mainline)
@@ -7,32 +8,40 @@ A LitElement Router (1278 bytes gzip) that uses JavaScript Mixin, Decorators and
 [![Known Vulnerabilities](https://snyk.io/test/github/hamedasemi/lit-element-router/badge.svg?targetFile=package.json)](https://snyk.io/test/github/hamedasemi/lit-element-router?targetFile=package.json)
 [![CircleCI](https://circleci.com/gh/hamedasemi/lit-element-router.svg?style=svg)](https://circleci.com/gh/hamedasemi/lit-element-router)
 
-
 # Installation
+
 ```sh
 npm install lit-element-router --save
 ```
 
-
 # Working Examples
-You can find working example projects on StackBlitz:  
+
+You can find working example projects on StackBlitz:
 
 Simple: https://stackblitz.com/edit/lit-element-router  
 Authentication: https://stackblitz.com/edit/lit-element-router-authentication  
 Authentication and Authorization (todo): https://stackblitz.com/edit/lit-element-router-authentication-and-authorization  
 Advanced (todo): https://stackblitz.com/edit/lit-element-router-advanced  
 Multi Router (todo): https://stackblitz.com/edit/lit-element-router-multi  
-All In One: https://stackblitz.com/edit/lit-element-router-all-in-one  
-
+All In One: https://stackblitz.com/edit/lit-element-router-all-in-one
 
 # Usage
-Add the __Router__ to LitElement using the router method then register the routes and the router callback.
+
+Add the **Router** to LitElement using the router method then register the routes and the router callback.
+
 ```javascript
 import { LitElement, html } from 'lit-element';
-import { router } from 'lit-element-router';
+import { router, RouterLink, RouterView } from 'lit-element-router';
 
-import './app-link';
-import './app-main';
+
+// 默认提供了一个基础组建
+customElements.define("router-link", RouterLink);
+customElements.define("router-view", RouterView);
+
+// 您也可以自定义自己的组建
+// import './app-link';
+// import './app-main';
+
 
 @router
 class App extends LitElement {
@@ -47,21 +56,49 @@ class App extends router(LitElement) {
   }
 
   static get routes() {
-    return [{
-      name: 'home',
-      pattern: '',
-      data: { title: 'Home' }
-    }, {
-      name: 'info',
-      pattern: 'info'
-    }, {
-      name: 'user',
-      pattern: 'user/:id'
-    }, {
-      name: 'not-found',
-      pattern: '*'
-    }];
+    return {
+      mode: "hash",
+      routes: [
+        {
+          name: "home",
+          pattern: "",
+          data: { title: "Home" },
+        },
+        {
+          name: "info",
+          pattern: "info",
+        },
+        {
+          name: "user",
+          pattern: "user/:id",
+        },
+        {
+          name: "not-found",
+          pattern: "*",
+        },
+      ],
+    };
   }
+
+  /*
+    兼容原原写法，默认history模式
+    static get routes() {
+      return [{
+        name: 'home',
+        pattern: '',
+        data: { title: 'Home' }
+      }, {
+        name: 'info',
+        pattern: 'info'
+      }, {
+        name: 'user',
+        pattern: 'user/:id'
+      }, {
+        name: 'not-found',
+        pattern: '*'
+      }];
+    }
+  */
 
   constructor() {
     super();
@@ -97,8 +134,8 @@ class App extends router(LitElement) {
 customElements.define('my-app', App);
 ```
 
+Add the **Outlet** to LitElement using the outlet method.
 
-Add the __Outlet__ to LitElement using the outlet method.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { outlet } from 'lit-element-router';
@@ -117,8 +154,8 @@ class Main extends outlet(LitElement) {
 customElements.define('app-main', Main);
 ```
 
+Add the **Navigator** to LitElement using the navigator method then use the navigate method to navigate.
 
-Add the __Navigator__ to LitElement using the navigator method then use the navigate method to navigate.
 ```javascript
 import { LitElement, html } from 'lit-element';
 import { navigator } from 'lit-element-router';
@@ -153,6 +190,7 @@ customElements.define('app-link', Link);
 ```
 
 # Supported Browsers
+
 <table>
   <tr>
     <td align="center"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_64x64.png" alt="Edge" width="32"><br><b>Edge</b></td>
@@ -177,6 +215,7 @@ customElements.define('app-link', Link);
 </table>
 
 # Contributors
+
 <table>
 <tbody>
   <tr>
@@ -189,34 +228,38 @@ customElements.define('app-link', Link);
   </tbody>
 </table>
 
-
 # Contributions
-__Clone__ these two repositories and put them side by side in a common folder:
+
+**Clone** these two repositories and put them side by side in a common folder:
+
 ```sh
 git clone git@github.com:hamedasemi/lit-element-router.git
 ```
+
 ```sh
 git clone git@github.com:hamedasemi/lit-element-router-test.git
 ```
 
-Navigate to both lit-element-router and lit-element-router-test directories and __install__ dependencies
+Navigate to both lit-element-router and lit-element-router-test directories and **install** dependencies
+
 ```sh
 npm install
 ```
 
+Navigate to lit-element-router-test and **run** the webpack dev **server**
 
-Navigate to lit-element-router-test and __run__ the webpack dev __server__
 ```sh
 npm run serve
 ```
 
-Start the development on lit-element-router, __observe__ and __test__ changes right in the lit-element-router-test __live__
+Start the development on lit-element-router, **observe** and **test** changes right in the lit-element-router-test **live**
 
-Run the __test__ locally (only necessary if you are developing the utility)
+Run the **test** locally (only necessary if you are developing the utility)
+
 ```sh
 npm test
 ```
 
-Add your name and picture to the __contributors' list__ at lit-element-router repository https://github.com/hamedasemi/lit-element-router#contributors
+Add your name and picture to the **contributors' list** at lit-element-router repository https://github.com/hamedasemi/lit-element-router#contributors
 
-Create a __pull request__ of your changes on both repositories lit-element-router and lit-element-router-test
+Create a **pull request** of your changes on both repositories lit-element-router and lit-element-router-test
