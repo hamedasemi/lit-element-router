@@ -58,10 +58,10 @@ export function router(base) {
 
       // 适配路径数据
       let { pathname, search, hash } = window.location;
-      if (__mode === "hash" && hash) {
+      if (__mode === "hash") {
         const [_pathname, _search] = hash.split("?");
         pathname = _pathname.substring(1);
-        search = _search || "";
+        search = (_search && "?" + _search) || "";
       }
 
       const uri = decodeURI(pathname);
@@ -204,8 +204,8 @@ export function navigator(base) {
         location.hash = href;
       } else {
         window.history.pushState({}, null, href);
+        window.dispatchEvent(new CustomEvent("route"));
       }
-      window.dispatchEvent(new CustomEvent("route"));
     }
   };
 }

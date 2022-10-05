@@ -63,10 +63,10 @@ export class MyElement extends router(LitElement) {
   render() {
     return html`
       <div>
-        <router-link href="/">Home</router-link>
-        <router-link href="/info">Info</router-link>
-        <router-link href="/info?data=12345">Info?data=12345</router-link>
-        <router-link href="/user/14">user/14</router-link>
+        <router-link href="/">Home</router-link> <br />
+        <router-link href="/info">Info</router-link><br />
+        <router-link href="/info?data=12345">Info?data=12345</router-link><br />
+        <router-link href="/user/14">user/14</router-link><br />
         <router-link href="/xxx">not-found</router-link>
       </div>
 
