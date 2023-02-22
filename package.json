@@ -1,6 +1,6 @@
 {
   "name": "@addasoft/lit-element-router",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "main": "lit-element-router.js",
   "scripts": {
     "test": "nyc mocha --require @babel/register './{,!(node_modules)/**/}*.test.js' --exit",
