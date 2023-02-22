@@ -187,7 +187,7 @@ export function outlet(base) {
   return class extends base {
     static get properties() {
       return {
-        activeRoute: { type: String, reflect: true, attribute: "active-route" }
+        activeRoute: { type: String, reflect: true, attribute: "active-route" },
       };
     }
 
@@ -217,32 +217,26 @@ export function outlet(base) {
     }
 
     outlet() {
-      const nodeCache = {};
       Array.from(this.querySelectorAll(`[route]`)).map((active) => {
-        const name = active.getAttribute("route");
-        const template = nodeCache[name] || this.moveChildNodes(active);
-        nodeCache[name] = template;
-        // replace route by template
-        active.replaceWith(template);
+        if (active.tagName !== "TEMPLATE") {
+          const template = this.moveChildNodes(active);
+          active.replaceWith(template);
+        }
       });
       if (this.shadowRoot) {
         Array.from(this.shadowRoot.querySelectorAll(`[route]`)).map(
           (active) => {
-            const name = active.getAttribute("route");
-            const template = nodeCache[name] || this.moveChildNodes(active);
-            nodeCache[name] = template;
-
-            // replace route by template
-            active.replaceWith(template);
+            if (active.tagName !== "TEMPLATE") {
+              const template = this.moveChildNodes(active);
+              active.replaceWith(template);
+            }
           }
         );
       }
       if (this.activeRoute) {
         Array.from(this.querySelectorAll(`[route~=${this.activeRoute}]`)).map(
           (active) => {
-            const name = active.getAttribute("route");
-            const template = nodeCache[name];
-            const dom = this.moveChildNodes(template, "div");
+            const dom = this.moveChildNodes(active, "div");
             active.replaceWith(dom);
           }
         );
@@ -250,9 +244,7 @@ export function outlet(base) {
           Array.from(
             this.shadowRoot.querySelectorAll(`[route~=${this.activeRoute}]`)
           ).map((active) => {
-            const name = active.getAttribute("route");
-            const template = nodeCache[name];
-            const dom = this.moveChildNodes(template, "div");
+            const dom = this.moveChildNodes(active, "div");
             active.replaceWith(dom);
           });
         }
